@@ -18,10 +18,10 @@ routes.use(session({
 routes.use(express.static('public'))
 
 var database = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'root',
-    database:'alex_rivera'
+    host:'bnbnpjlwouew0p07mjrd-mysql.services.clever-cloud.com',
+    user:'uv2js8mxroohueg0',
+    password:'19tYHEBa0uTxgTQWVy3i',
+    database:'bnbnpjlwouew0p07mjrd'
 })
 
 function session_check(req,res,next){
