@@ -1,0 +1,65 @@
+<%-include('header.ejs'); %>
+    
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Manage Project</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                       <table border="1" width="100%" style="height:25px;">
+                        <tr style="background-color:skyblue;text-align:center;font-size:21px;">
+
+                            <th>Sr</th>
+                            <th>project name</th>
+                            <th>project category</th>
+                            <th>Background Image</th>
+                            <th>Action</th>
+
+
+                        </tr>
+                        
+                     <%   for(var i=0;i<project.length;i++){ %>
+                        <tr style="height:30px;background-color:rgb(214, 209, 209);font-size:20px;text-align:center;border-bottom:1px solid black;">
+                            <td><%=i+1%></td>
+                            <td><%=project[i].Project_name%></td>
+                            <td><%=project[i].Project_category%></td>
+                            
+                            <td>
+                                <video 
+                                    src="/<%= project[i].Background_img %>" 
+                                    controls
+                                    style="width: 300px; height: 170px;">
+                                </video>      
+                            </td>
+
+
+                            <td>
+                                <a href="/admin/del_project/<%=project[i].id%>/<%=project[i].Background_img%>">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a>
+                                    <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                       </table>
+                     </div>
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>
+

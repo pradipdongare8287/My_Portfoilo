@@ -1,0 +1,24 @@
+<%-include('header.ejs');%>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Services</span>
+                <h2 class="section-title">What I Offer</h2>
+                <p class="section-desc">Expert solutions tailored to bring your vision to life</p>
+            </div>
+            
+            <div class="services-grid">
+
+                <% for(var i=0;i<services.length;i++){ %>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="<%=services[i].Service_icon%>"></i>
+                    </div>
+                    <h3><%=services[i].Service_name%></h3>
+                    <p><%=services[i].Service_discription%></p>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </section>
+<%-include('footer.ejs');%>

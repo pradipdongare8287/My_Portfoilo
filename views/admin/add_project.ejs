@@ -1,0 +1,40 @@
+<%-include('header.ejs'); %>
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Add Project</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                        <form action="/admin/add_project" method="post" enctype="multipart/form-data">
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Project Name</label><br>
+                            <input type="text" name="project_name" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Project Category</label><br>
+                            <input type="text" name="project_category" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                             <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;margin-top:30px;">Project video </label><br>
+                            <input type="file" name="project_video" style="height:40px;width:250px;z-index:9999;margin-left:30px;" accept="video/*"/><Br>
+                            <!-- <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;margin-top:30px;">Old image</label><br> -->
+                            <!-- <img src="" style="height:100px;width:100px;margin-left:30px;margin-top:60px;"/><br><br> -->
+
+                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
+                                Save
+                            </button>
+
+                        </form>
+                     </div>
+                  
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>

@@ -1,0 +1,213 @@
+<%-include('header.ejs'); %>
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Dashboard</h1>
+                            <p class="text-muted small mb-0">Welcome back, <%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                            <a href="/admin/add_user"><button class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i>Add New
+                            </button></a>
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                    <div class="row g-4">
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-primary">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="156">0</h3>
+                                    <p class="stat-label">Total Projects</p>
+                                </div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 12%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-success">
+                                    <i class="fas fa-blog"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="48">0</h3>
+                                    <p class="stat-label">Blog Posts</p>
+                                </div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 8%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-warning">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="32">0</h3>
+                                    <p class="stat-label">Messages</p>
+                                </div>
+                                <div class="stat-change negative">
+                                    <i class="fas fa-arrow-down"></i> 3%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-danger">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="1240">0</h3>
+                                    <p class="stat-label">Visitors</p>
+                                </div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 24%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Row -->
+                    <div class="row g-4 mt-2">
+                        <div class="col-xl-8 col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Monthly Visitors</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="visitorsChart" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title mb-0">Portfolio Categories</h5>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="categoriesChart" height="250"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity & Messages -->
+                    <div class="row g-4 mt-2">
+                        <div class="col-xl-7 col-lg-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title mb-0">Recent Activity</h5>
+                                    <a href="#" class="text-decoration-none small">View All</a>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="activity-list">
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-primary">
+                                                <i class="fas fa-plus"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <p><strong>John Doe</strong> added a new portfolio item</p>
+                                                <small>2 hours ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-success">
+                                                <i class="fas fa-edit"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <p><strong>Admin</strong> updated the about section</p>
+                                                <small>4 hours ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-warning">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <p><strong>New user</strong> registered: Sarah Smith</p>
+                                                <small>6 hours ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <p><strong>Admin</strong> deleted a testimonial</p>
+                                                <small>1 day ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon bg-info">
+                                                <i class="fas fa-envelope"></i>
+                                            </div>
+                                            <div class="activity-content">
+                                                <p><strong>New message</strong> from contact form</p>
+                                                <small>1 day ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-5 col-lg-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="card-title mb-0">Recent Messages</h5>
+                                    <a href="#" class="text-decoration-none small">View All</a>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="message-list">
+                                        <div class="message-item unread">
+                                            <div class="message-avatar">
+                                                <img src="https://ui-avatars.com/api/?name=Alice+Johnson&size=40&background=6c63ff&color=fff" alt="Avatar" />
+                                            </div>
+                                            <div class="message-content">
+                                                <h6>Alice Johnson</h6>
+                                                <p>Hi, I'm interested in your web development services...</p>
+                                                <small>2 hours ago</small>
+                                            </div>
+                                            <span class="badge bg-danger">New</span>
+                                        </div>
+                                        <div class="message-item">
+                                            <div class="message-avatar">
+                                                <img src="https://ui-avatars.com/api/?name=Robert+Chen&size=40&background=28a745&color=fff" alt="Avatar" />
+                                            </div>
+                                            <div class="message-content">
+                                                <h6>Robert Chen</h6>
+                                                <p>Great work on the portfolio project! Can we...</p>
+                                                <small>1 day ago</small>
+                                            </div>
+                                        </div>
+                                        <div class="message-item">
+                                            <div class="message-avatar">
+                                                <img src="https://ui-avatars.com/api/?name=Maria+Garcia&size=40&background=dc3545&color=fff" alt="Avatar" />
+                                            </div>
+                                            <div class="message-content">
+                                                <h6>Maria Garcia</h6>
+                                                <p>I have a question about your pricing plans...</p>
+                                                <small>2 days ago</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>

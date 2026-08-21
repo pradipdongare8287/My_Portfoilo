@@ -1,0 +1,61 @@
+
+
+<%-include('header.ejs')%>
+ 
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Add About</h1>
+                            <p class="text-muted small mb-0">Welcome back, Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                        <form action="/admin/save_about/<%=deta.Image%>" method="post" enctype="multipart/form-data">
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Positon</label><br>
+                            <input type="text" name="position" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value=" <%=deta.position%>"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">experience_discription</label><br>
+                            <input type="text" name="expirience_dicription" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.expirience_dicription%>" /><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Name</label><br>
+                            <input type="text" name="name" style="height:50px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.name%>" /><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Email</label><br>
+                            <input type="email" name="email"  style="height:50px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.email%>"/><br>
+
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Location</label><br>
+                            <input type="text" name="location" style="margin-left:30px;height:40px;" value="<%=deta.location%>"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Freelance:</label><br>
+                            <input type="text" name="freelance" style="margin-left:30px;height:40px;" value="<%=deta.freelance%>"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Projects Completed</label><br>
+                            <input type="number" name="Project_complete" style="margin-left:30px;height:40px;" value="<%=deta.Project_complete%>"/><br>
+                             <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Happy Clients</label><br>
+                            <input type="number" name="happy_client" style="margin-left:30px;height:40px;" value="<%=deta.happy_client%>"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Awards Won</label><br>
+                            <input type="number" name="awards_won" style="margin-left:30px;height:40px;" value="<%=deta.Awards_won%>"/><br> 
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Years Experience</label><br>
+                            <input type="number" name="year_of_expirence" style="margin-left:30px;height:40px;" value="<%=deta.year_of_expirence%>"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Old Image</label><br>
+                            <img src="/<%=deta.Image%>" height="100px" width="100px" style="margin-left:30px;"/><br>
+                             <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Add New Photo</label><br>
+                            <input type="file" name="photo" style="margin-left:30px;height:40px;" value="<%=deta.year_of_expirence%>"/><br>
+                            <button type="submit" style="height:34px;width:80px;margin-top:40px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
+                                Save
+                            </button>
+                            <!-- <h1><%=deta.freelance%></h1> -->
+                        </form>
+                     </div>
+                 </div>
+            </div>
+            <!-- Page Header -->
+                   
+
+<%-include('footer.ejs')%>
+
+

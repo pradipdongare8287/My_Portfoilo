@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard- Pradip Admin</title>
+    
+        
+    <link rel="icon"  href="<%=hederedata.photo%>">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/admin/style.css" />
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <i class="fas fa-code"></i>
+                <span><%=headerData.name%><span>&nbsp;&nbsp; Admin</span></span>
+            </div>
+            
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="/admin">
+                            <i class="fas fa-th-large"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-divider">Content</li>
+                    
+                    <li class="nav-item">
+                        <a href="#hero" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-landmark"></i>
+                            <span>Hero Section</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="hero">
+                            <li><a href="/admin/hero">Edit Hero</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#about" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-user"></i>
+                            <span>About</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="about">
+                            <li><a href="/admin/about">Edit About</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#skills" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>
+                            <span>Skills</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="skills">
+                            <li><a href="/admin/add_skill">Add Skill</a></li>
+                            <li><a href="/admin/edit_skill">Manage Skills</a></li>
+                        </ul>
+                    </li>
+
+                   <li class="nav-item">
+                        <a href="#experience" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-cogs"></i>
+                            <span>Resume</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="experience">
+                            <li><a href="/admin/add_Experience">Add Education & Experience</a></li>
+                            <li><a href="/admin/manage_Experience">Manage Education & Experience</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#services" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Services</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="services">
+                            <li><a href="/admin/add_service">Add Service</a></li>
+                            <li><a href="/admin/managae_service">Manage Services</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#portfolio" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Portfolio</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="portfolio">
+                            <li><a href="/admin/add_project">Add Project</a></li>
+                            <li><a href="/admin/manage_project">Manage Projects</a></li>
+                            <li><a href="#">Categories</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#portfolio" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-folder-open"></i>
+                            <span>Certificate</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="portfolio">
+                            <li><a href="/admin/add_certificate">Add Certificate</a></li>
+                            <li><a href="/admin/manage_manage">Manage Certificate</a></li>
+                            <li><a href="#">Categories</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#blog" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-blog"></i>
+                            <span>Blog</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="blog">
+                            <li><a href="/admin/add_post">Add Post</a></li>
+                            <li><a href="/admin/manage_blog">Manage Posts</a></li>
+                            <li><a href="#">Categories</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#testimonials" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-comments"></i>
+                            <span>Testimonials</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="testimonials">
+                            <li><a href="/admin/add_testimonial">Add Testimonial</a></li>
+                            <li><a href="/admin/manage_testimonials">Manage Testimonials</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-divider">Management</li>
+                    
+                    <li class="nav-item">
+                        <a href="#messages" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-envelope"></i>
+                            <span>Messages</span>
+                            <span class="badge bg-danger ms-auto">12</span>
+                        </a>
+                        <ul class="collapse" id="messages">
+                            <li><a href="#">Inbox</a></li>
+                            <li><a href="#">Unread</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="#users" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fas fa-users"></i>
+                            <span>Enquiry</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <ul class="collapse" id="users">
+                            <li><a href="/admin/pending_enq">Pending Enquiry</a></li>
+                            <li><a href="/admin/confirm_enq">Confirm Enquiry</a></li>
+                            <li><a href="/admin/reject_req">Reject Enquiry</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="nav-divider">System</li>
+                    
+                    <li class="nav-item">
+                        <a href="/admin/setting">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="/admin/logout">
+                            <i class="fas fa-sign-out-alt text-danger"></i>
+                            <span class="text-danger">Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="main-content">
+            <!-- ===== NAVBAR ===== -->
+            <header class="navbar-top">
+                <div class="d-flex align-items-center gap-3">
+                    <button class="btn btn-light" id="sidebarToggleBtn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search..." class="form-control form-control-sm" />
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Theme Toggle -->
+                    <button class="btn btn-light" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- Notifications -->
+                    <div class="dropdown">
+                        <button class="btn btn-light position-relative" data-bs-toggle="dropdown">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">5</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end p-0" style="width: 320px;">
+                            <div class="dropdown-header bg-light py-2">
+                                <strong>Notifications</strong>
+                                <a href="#" class="float-end text-decoration-none small">Mark all read</a>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item">
+                                    <i class="fas fa-user-plus text-primary"></i>
+                                    <div class="notification-content">
+                                        <p>New user registered: John Doe</p>
+                                        <small>2 min ago</small>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <i class="fas fa-comment text-success"></i>
+                                    <div class="notification-content">
+                                        <p>New testimonial from Jane Smith</p>
+                                        <small>15 min ago</small>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <i class="fas fa-envelope text-warning"></i>
+                                    <div class="notification-content">
+                                        <p>New contact message received</p>
+                                        <small>1 hour ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-footer text-center py-2">
+                                <a href="#" class="text-decoration-none small">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- User Profile -->
+                    <div class="dropdown">
+                        <button class="btn btn-light p-0" data-bs-toggle="dropdown">
+                            <img src="/<%=headerData.photo%>" 
+                                 alt="Profile" class="rounded-circle" width="40" height="40" />
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">
+                                <i class="fas fa-user me-2"></i>Profile
+                            </a></li>
+                            <li><a class="dropdown-item" href="/admin/setting">
+                                <i class="fas fa-cog me-2"></i>Settings
+                            </a></li>
+                            <li><hr class="dropdown-divider" /></li>
+                            <li><a class="dropdown-item text-danger" href="/admin/logout">
+                                <i class="fas fa-sign-out-alt me-2"></i>Logout
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>

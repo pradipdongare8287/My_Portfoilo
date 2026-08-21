@@ -1,0 +1,56 @@
+<%-include('header.ejs'); %>
+    
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Manage Service</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                       <table border="1" width="100%" style="height:25px;">
+                        <tr style="background-color:skyblue;text-align:center;font-size:21px;">
+
+                            <th>Sr</th>
+                            <th>Service name</th>
+                            <th>Service icon</th>
+                            <th>Service discription</th>
+                            <th>Action</th>
+
+
+                        </tr>
+                     <%   for(var i=0;i<service.length;i++){ %>
+                        <tr style="height:30px;background-color:rgb(214, 209, 209);font-size:20px;text-align:center;border-bottom:1px solid black;">
+                            <td><%=i+1%></td>
+                            <td><%=service[i].Service_name%></td>
+                            <td><%=service[i].Service_icon%></td>
+                            <td><%=service[i].Service_discription%></td>
+
+                            <td>
+                                <a href="/admin/del_ser/<%=service[i].sr_id%>">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a>
+                                    <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                       </table>
+                     </div>
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>
+

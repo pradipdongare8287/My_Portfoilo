@@ -1,0 +1,42 @@
+<%-include('header.ejs')%>
+
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Add Home</h1>
+                            <p class="text-muted small mb-0">Welcome back, Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                        <form action="/admin/save_hero/<%=deta.Photo%>" method="post" enctype="multipart/form-data">
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Name</label><br>
+                            <input type="text" name="name" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.name%>"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Position</label><br>
+                            <input type="text" name="Position" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.Position%>" /><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">experience_discription</label><br>
+                            <input type="text" name="experience_disc" style="height:50px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.experience_disc%>" /><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Image</label><br>
+                            <input type="file" name="Photo" style="margin-left:30px;height:40px;"/><br>
+                            <h5 style="margin-left:30px;">Old IMAGE</h5>
+                            <img src="/<%=deta.Photo%>" style="height:100px;width:100px;margin-left:30px;"/><br>
+                            <button type="submit" style="height:34px;width:80px;margin-top:40px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
+                                Save
+                            </button>
+
+                        </form>
+                     </div>
+                 </div>
+            </div>
+            <!-- Page Header -->
+                   
+
+<%-include('footer.ejs')%>

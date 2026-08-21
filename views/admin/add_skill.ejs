@@ -1,0 +1,100 @@
+<%-include('header.ejs'); %>
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Add Skill</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                        <form action="/admin/add_skill_save" method="post">
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Technology</label><br>
+                            <input type="text" name="tecnology" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Percentage</label><br>
+                            <input type="text" name="percentage" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
+                                Save
+                            </button>
+
+                        </form>
+                     </div>
+                    <!-- <div class="row g-4">
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-primary">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="156">0</h3>
+                                    <p class="stat-label">Total Projects</p>
+                                </div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 12%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-success">
+                                    <i class="fas fa-blog"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="48">0</h3>
+                                    <p class="stat-label">Blog Posts</p>
+                                </div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 8%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-warning">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="32">0</h3>
+                                    <p class="stat-label">Messages</p>
+                                </div>
+                                <div class="stat-change negative">
+                                    <i class="fas fa-arrow-down"></i> 3%
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-3 col-lg-6 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-icon bg-danger">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3 class="stat-number" data-count="1240">0</h3>
+                                    <p class="stat-label">Visitors</p>
+                                </div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-arrow-up"></i> 24%
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- Charts Row -->
+                    
+
+                    <!-- Recent Activity & Messages -->
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>

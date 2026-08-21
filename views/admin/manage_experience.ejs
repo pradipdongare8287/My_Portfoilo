@@ -1,0 +1,106 @@
+<%-include('header.ejs'); %>
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Manage experience</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                    <div>
+                       <table border="1" width="100%">
+                        <tr style="background-color:skyblue;">
+
+                            <th>Sr.no</th>
+                            <th>experience_year</th>
+                            <th>Position</th>
+                            <th>experience_company</th>
+                            <th>experience_disc</th>
+                            <th>Action</th>
+
+
+                        </tr>
+                     <%   for(var i=0;i<experience.length;i++){ %>
+                        <tr style="height:40px;">
+                            <td><%=i+1%></td>
+                            <td><%=experience[i].experience_year%></td>
+                            <td><%=experience[i].Position%></td>
+                            <td><%=experience[i].experience_company%></td>
+                            <td><%=experience[i].experience_disc%></td>
+
+                            <td>
+                                <a href="/admin/del_exp/<%=experience[i].experience_id%>">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a>
+                                    <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                       </table>
+
+<!-- ================================================================================================================================
+================================================================================================================================ -->
+
+                    <div>
+                        <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3" style="margin-top:100px;">Manage Qualification</h1>
+                            <p class="text-muted small mb-0">Welcome back, Here's your overview</p>
+                        </div>
+                        <div><br><br>
+                    </div>
+
+
+                    </div>
+                             <table border="1" width="100%">
+                        <tr style="background-color:skyblue;">
+
+                            <th>Sr.no</th>
+                            <th>Eduction_year</th>
+                            <th>Qualification</th>
+                            <th>University</th>
+                            <th>Action</th>
+
+                           
+
+                        </tr>
+                     <%   for(var i=0;i<eduction.length;i++){ %>
+                        <tr style="height:40px;">
+                            <td><%=i+1%></td>
+                            <td><%=eduction[i].Eduction_year%></td>
+                            <td><%=eduction[i].Qualification%></td>
+                            <td><%=eduction[i].University%></td>
+                            
+
+                            <td>
+                                <a href="/admin/del_edu/<%=eduction[i].edu_id%>">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a>
+                                    <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                       </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>

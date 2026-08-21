@@ -1,0 +1,49 @@
+<%-include('header.ejs'); %>
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Manage Skill</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                       <table border="1" width="100%">
+                        <tr style="background-color:skyblue;">
+
+                            <th>Sr.no</th>
+                            <th>Technology Name</th>
+                            <th>Techonlogy (per%)</th>
+                            <th>Status</th>
+                        </tr>
+                     <%   for(var i=0;i<skill.length;i++){ %>
+                        <tr style="height:40px;">
+                            <td><%=i+1%></td>
+                            <td><%=skill[i].tecnology%></td>
+                            <td><%=skill[i].percentage%></td>
+                            <td>
+                                <a href="/admin/del_tech/<%=skill[i].tech_id%>">
+                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </a>
+                                <a>
+                                    <button class="btn btn-warning"><i class="fa fa-pencil"></i></button>
+                                </a>
+                            </td>
+
+                        </tr>
+                        <% } %>
+                       </table>
+                     </div>
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>

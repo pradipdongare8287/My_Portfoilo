@@ -1,0 +1,69 @@
+<%-include('header.ejs');%>
+ <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">About Me</span>
+                <h2 class="section-title">Turning Ideas Into Reality</h2>
+                <p class="section-desc">Get to know more about my background and what drives me</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="<%=about.Image%>" alt="Alex Rivera" />
+                    <div class="about-experience-badge">
+                        <span>Fresher</span>
+                        Learn from A2Z it hub
+                    </div>
+                </div>
+                <div class="about-content">
+                    <h3><%=about.position%></h3>
+                    <p><%=about.expirience_dicription%></p>
+                    <p>With a background in both design and development, I bridge the gap between aesthetics and technology. I believe that great design is not just about how it looks, but how it works.</p>
+                    
+                    <div class="about-info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Name:</span>
+                            <span class="info-value"><%=about.name%></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value"><%=about.email%></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location:</span>
+                            <span class="info-value"><%=about.location%></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Freelance:</span>
+                            <span class="info-value"><%=about.freelance%></span>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+     <section class="statistics">
+        <div class="container">
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="120"><%=about.Project_complete%></span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="85"><%=about.happy_client%></span>
+                    <span class="stat-label">Happy Clients</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="15"><%=about.Awards_won%></span>
+                    <span class="stat-label">Awards Won</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="4"><%=about.year_of_expirence%></span>
+                    <span class="stat-label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </section>
+<%-include('footer.ejs');%>

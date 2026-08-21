@@ -1,0 +1,38 @@
+<%-include('header.ejs'); %>
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Add Services</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                        <form action="/admin/add_service" method="post">
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Service Name</label><br>
+                            <input type="text" name="Service_name" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Service Icon</label><br>
+                            <input type="text" name="Service_icon" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Service Discription</label><br>
+                            <input type="text" name="Service_discription" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                           
+                            <button type="submit" style="height:34px;width:80px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
+                               
+                            </button>
+
+                        </form>
+                     </div>
+                  
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>

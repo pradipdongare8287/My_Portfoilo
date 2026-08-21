@@ -1,0 +1,211 @@
+<%-include('header.ejs');%>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="page-header">
+                        <h1 class="h3 mb-1">Settings</h1>
+                        <p class="text-muted small mb-0">Manage your website settings</p>
+                    </div>
+
+                    <!-- Settings Tabs -->
+                    <ul class="nav nav-tabs settings-tabs" id="settingsTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#general">
+                                <i class="fas fa-cog me-2"></i>General
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#social">
+                                <i class="fas fa-share-alt me-2"></i>Social Media
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#seo">
+                                <i class="fas fa-search me-2"></i>SEO
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#smtp">
+                                <i class="fas fa-envelope me-2"></i>SMTP
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content mt-4">
+                        <!-- General Settings -->
+                        <div class="tab-pane1 fade show active" id="general">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/admin/save_contact/<%=data.Logo%>" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Email</label>
+                                                <input type="email" name="email" class="form-control" value="<%=data.Email%>"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Phone</label>
+                                                <input type="text" class="form-control" name="phone" value="<%=data.Phone%>"/>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label fw-semibold">Address</label>
+                                                <input type="text" class="form-control" name="address" rows="2" style="text-align:left;height:100px;width:200px;"  value="<%=data.Address%>"/>
+                                                  
+                                                
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Logo</label>
+                                                <input type="file" name="logo" class="form-control"/>
+                                                <img src="/<%=data.Logo%>"  height="100px" width="100px" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Map</label>
+                                                <input type="text" class="form-control" name="map" value="<%=data.Map%>"/>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i>Save Settings
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Settings -->
+                        <div class="tab-pane1 fade" id="social">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="/admin/social_save" method="post">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-facebook text-primary me-2"></i>Facebook
+                                                </label>
+                                                <input type="url" name="facebook" class="form-control" value="<%=data2.facebook%>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-twitter text-info me-2"></i>Twitter
+                                                </label>
+                                                <input type="url" name="twitter" class="form-control" value="<%=data2.twitter%>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-instagram text-danger me-2"></i>Instagram
+                                                </label>
+                                                <input type="url" name="instagram" class="form-control" value="<%=data2.instagram%>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-linkedin text-primary me-2"></i>LinkedIn
+                                                </label>
+                                                <input type="url" class="form-control" name="linkedin" value="<%=data2.linkedin%>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-github text-dark me-2"></i>GitHub
+                                                </label>
+                                                <input type="url" class="form-control" name="github" value="<%=data2.github%>" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">
+                                                    <i class="fab fa-youtube text-danger me-2"></i>YouTube
+                                                </label>
+                                                <input type="url" class="form-control" name="youtube" value="<%=data2.youtube%>"  />
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i>Save Settings
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEO Settings -->
+                        <div class="tab-pane fade" id="seo">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form id="seoSettingsForm">
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Meta Title</label>
+                                            <input type="text" class="form-control" value="Portfolio Admin - Creative Portfolio" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Meta Description</label>
+                                            <textarea class="form-control" rows="3">A modern portfolio showcasing creative work and professional services.</textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Keywords</label>
+                                            <input type="text" class="form-control" value="portfolio, creative, web design, development" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label fw-semibold">Analytics Code</label>
+                                            <textarea class="form-control" rows="4" placeholder="<!-- Google Analytics Code -->"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save me-2"></i>Save Settings
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SMTP Settings -->
+                        <div class="tab-pane fade" id="smtp">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form id="smtpSettingsForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">SMTP Host</label>
+                                                <input type="text" class="form-control" placeholder="smtp.gmail.com" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">SMTP Port</label>
+                                                <input type="number" class="form-control" placeholder="587" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">SMTP Username</label>
+                                                <input type="text" class="form-control" placeholder="your@email.com" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">SMTP Password</label>
+                                                <input type="password" class="form-control" placeholder="********" />
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">Encryption</label>
+                                                <select class="form-select">
+                                                    <option value="tls">TLS</option>
+                                                    <option value="ssl">SSL</option>
+                                                    <option value="none">None</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label fw-semibold">From Email</label>
+                                                <input type="email" class="form-control" placeholder="noreply@portfolio.com" />
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fas fa-save me-2"></i>Save Settings
+                                                </button>
+                                                <button type="button" class="btn btn-success ms-2">
+                                                    <i class="fas fa-paper-plane me-2"></i>Test Connection
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<%-include('footer.ejs');%>
+     

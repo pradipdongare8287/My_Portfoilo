@@ -1,0 +1,29 @@
+<%-include('header.ejs')%>
+<section class="blog">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Blog</span>
+                <h2 class="section-title">Latest Insights</h2>
+                <p class="section-desc">Thoughts, tips, and lessons from my journey</p>
+            </div>
+            
+            <div class="blog-grid">
+
+                <% for(var i=0;i<blog.length;i++){ %>
+
+                <article class="blog-card">
+                    <img src="/<%=blog[i].Image%>" alt="Blog 1" />
+                    <div class="blog-content">
+                        <span class="blog-date"><%=blog[i].post_date%></span>
+                        <h3><%=blog[i].post_name%></h3>
+                        <p><%=blog[i].post_discription%></p>
+                        <a href="<%=blog[i].blog_link%>" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <% } %>
+            
+            </div>
+        </div>
+    </section>
+<%-include('footer.ejs')%>

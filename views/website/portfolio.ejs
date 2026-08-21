@@ -1,0 +1,107 @@
+<%-include('header.ejs');%>
+  <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-desc">A selection of my recent work across various domains</p>
+            </div>
+            
+            <!-- Filter Buttons -->
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+            </div>
+            
+            <!-- Portfolio Grid -->
+           
+        </div>
+    </section>
+
+        <!-- PROJECT VIEDO SECTON  -->
+
+<section class="certificate-section" id="certificates">
+
+    <div class="certificate-heading">
+        <span>My Achievements</span>
+        <h2>My Projects</h2>
+        <p>Turning Knowledge Into Real-World Projects</p>
+    </div>
+
+    <div class="certificate-grid">
+
+
+
+          <% for(var i=0;i<portfolio.length;i++){ %>
+
+        <div class="certificate-card">
+
+            <div class="certificate-img">
+                <video src="<%=portfolio[i].Background_img%>" controls></video>
+            </div>
+            <div class="certificate-info">
+                <h3><%=portfolio[i].Project_name%></h3>
+                <p><%=portfolio[i].Project_category%></p>
+                
+                <a 
+                    href="<%=portfolio[i].Background_img%>" 
+                    target="_blank"
+                    class="view-certificate"
+                >
+                    View <%=portfolio[i].Project_name%> Project
+                </a>
+            </div>
+        </div>
+            <% } %>
+       
+
+       
+
+    </div>
+
+</section>
+
+<!-- ===================================================================== -->
+    <section class="certificate-section" id="certificates">
+
+    <div class="certificate-heading">
+        <span>My Achievements</span>
+        <h2>My Certificates</h2>
+        <p>Certificates I have earned during my learning journey</p>
+    </div>
+
+    <div class="certificate-grid">
+
+
+
+          <% for(var i=0;i<all_certificate.length;i++){ %>
+
+        <div class="certificate-card">
+
+            <div class="certificate-img">
+                <img 
+                    src="/<%=all_certificate[i].certificate_img%>" 
+                    alt="<%=all_certificate[i].certificate_name%>"
+                >
+            </div>
+            <div class="certificate-info">
+                <h3><%=all_certificate[i].certificate_name%></h3>
+                <p><%=all_certificate[i].certificate_decleare_institude%></p>
+
+                <a 
+                    href="/<%=all_certificate[i].certificate_img%>" 
+                    target="_blank"
+                    class="view-certificate"
+                >
+                    View Certificate
+                </a>
+            </div>
+        </div>
+            <% } %>
+       
+
+       
+
+    </div>
+
+</section>
+<%-include('footer.ejs');%>

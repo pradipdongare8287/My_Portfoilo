@@ -1,0 +1,35 @@
+<%-include('header.ejs'); %>
+
+            <!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Add New User</h1>
+                            <p class="text-muted small mb-0">Welcome back, Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                        <form action="/admin/add_new_user" method="post">
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Email Id</label><br>
+                            <input type="email" name="email" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Password</label><br>
+                            <input type="password" name="password" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
+                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
+                                Save
+                            </button>
+
+                        </form>
+                     </div>
+                    
+                    
+                </div>
+            </div>
+
+ <%-include('footer.ejs'); %>

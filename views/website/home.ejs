@@ -1,0 +1,32 @@
+<%-include('header.ejs');%>
+
+ <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-greeting">Hello, I'm</span>
+                <h1><%=hero.name%></h1>
+                <h2 id="typingText"><%=hero.Position%></h2>
+                <p><%=hero.experience_disc%></p>
+                <div class="hero-buttons">
+                    <a href="/portfolio" class="btn btn-primary">View My Work</a>
+                    <a href="/contact" class="btn btn-secondary">Let's Talk</a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://github.com/pradipdongare8287" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/pradip-dongare-6331a43bb?utm_source=share_via&utm_content=profile&utm_medium=member_android" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/<%=hero.Photo%>" alt="Pradip Dongare - Creative Developer" />
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+<%-include('footer.ejs');%>

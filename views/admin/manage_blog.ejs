@@ -1,0 +1,98 @@
+<%-include('header.ejs')%>
+<!-- ===== DASHBOARD CONTENT ===== -->
+            <div class="page-content">
+                <div class="container-fluid">
+                    <!-- Page Header -->
+                    <div class="page-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h3 mb-1">Manage Post</h1>
+                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
+                        </div>
+                        <div>
+                           
+                        </div>
+                    </div>
+
+                    <!-- Stat Cards -->
+                     <div>
+                      <div class="table-responsive" style="margin-top:20px;">
+
+<table class="table table-bordered table-hover shadow"
+style="background:#fff;border-radius:10px;overflow:hidden;">
+
+    <thead>
+
+        <tr style="background:#0d6efd;color:white;text-align:center;font-size:18px;height:55px;vertical-align:middle;">
+
+            <th>Sr</th>
+            <th>Post Date</th>
+            <th>Post Name</th>
+            <th>Post Description</th>
+            <th>Post Image</th>
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    <% for(var i=0;i<data.length;i++){ %>
+
+        <tr style="text-align:center;font-size:17px;height:60px;vertical-align:middle;transition:.3s;">
+
+            <td style="font-weight:bold;">
+                <%= i+1 %>
+            </td>
+
+            <td>
+                <%= data[i].post_date %>
+            </td>
+
+            <td style="font-weight:bold;color:#0d6efd;">
+                <%= data[i].post_name %>
+            </td>
+
+            <td style="text-align:left;padding-left:15px;">
+                <%= data[i].post_discription %>
+            </td>
+            <td>
+                <img src="/<%=data[i].Image%>" height="100px" width="100px"/>
+            </td>
+
+            <td>
+
+                <a href="/admin/del_post/<%=data[i].Post_id%>/<%=data[i].Image%>">
+
+                    <button class="btn btn-danger btn-sm"
+                    style="border-radius:8px;width:42px;height:38px;">
+                        <i class="fa fa-trash"></i>
+                    </button>
+
+                </a>
+
+                <a href="">
+
+                    <button class="btn btn-warning btn-sm"
+                    style="border-radius:8px;width:42px;height:38px;color:white;margin-left:8px;">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+
+                </a>
+
+            </td>
+
+        </tr>
+
+    <% } %>
+
+    </tbody>
+
+</table>
+
+</div>
+                     </div>
+                    
+                </div>
+            </div>
+<%-include('footer.ejs')%>
