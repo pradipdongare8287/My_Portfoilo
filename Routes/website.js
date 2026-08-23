@@ -59,7 +59,7 @@ routes.get('/services',async(req,res)=>{
  
     res.render('website/services.ejs',{services:services})
 })
-routes.get('/portfolio',async(req,res)=>{
+routes.get('/Certificate',async(req,res)=>{
     var select = `select * from portfolio`
     var certificate = `select * from certificates`
     var all_certificate = await query(certificate)
@@ -76,7 +76,7 @@ routes.get('/testimonials',async(req,res)=>{
     var testimonials = await query(select)
     res.render('website/testimonials.ejs',{testimonials:testimonials})
 })
-routes.get('/blog',async(req,res)=>{
+routes.get('/project',async(req,res)=>{
     
     var select = `select * from blog`
     var blog = await query(select)
