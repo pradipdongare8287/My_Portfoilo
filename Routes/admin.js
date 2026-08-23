@@ -313,7 +313,7 @@ routes.get('/manage_manage',async(req,res)=>{
     var select_all_certificate = `select * from certificates`
     var certificate = await query(select_all_certificate)
     res.render('admin/Manage_certificate.ejs',{certificate:certificate})
-    console.log(certificate)
+    
 })
 
 routes.get('/delete_certificate/:id',async(req,res)=>{
