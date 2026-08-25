@@ -470,6 +470,7 @@ routes.get('/hero',session_check,async(req,res)=>{
     var select = `select * from hero`
     var sel = await query(select)
     res.render('admin/update_hero.ejs',{deta:sel[0]})
+    
 })
 
 routes.post('/save_hero/:img',async(req,res)=>{
