@@ -262,7 +262,7 @@ routes.get('/del_ser/:id',session_check,async(req,res)=>{
 
 
 
-routes.get('/add_project',session_check,(req,res)=>{
+routes.get('/add_project_section',session_check,(req,res)=>{
     var username = req.session.username
     res.render('admin/add_project.ejs',{username:username})
 })
@@ -279,7 +279,7 @@ routes.post('/add_project',session_check,async(req,res)=>{
                 values(?,?,?)`
 
    var ins = await query(insert,[project_name,project_category,newname]);
-   res.redirect('/admin/add_project');
+   res.redirect('/admin/add_project_section');
 })
 
 routes.get('/manage_project',session_check,async(req,res)=>{
