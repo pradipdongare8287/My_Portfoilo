@@ -8,7 +8,10 @@ const util = require('util')
     host:'bnbnpjlwouew0p07mjrd-mysql.services.clever-cloud.com',
     user:'uv2js8mxroohueg0',
     password:'19tYHEBa0uTxgTQWVy3i',
-    database:'bnbnpjlwouew0p07mjrd'
+    database:'bnbnpjlwouew0p07mjrd',
+    waitForConnections: true,
+    connectionLimit: 5,
+    queueLimit: 0
  })
 
 
@@ -34,6 +37,8 @@ const util = require('util')
 
 routes.get('/',async(req,res)=>{
     var select = `select * from hero`
+    await query('INSERT INTO website_visits () VALUES ()');
+
     var hero = await query(select);
     res.render('website/home.ejs',{hero:hero[0]})
 })

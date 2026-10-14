@@ -6,8 +6,7 @@ const session = require('express-session');
 const fileupload = require('express-fileupload');
 const path = require('path');
 const fs = require('fs');
-const { render } = require('ejs');
-const { rejects } = require('assert');
+
 
 routes.use(session({
     secret:'mykey',
@@ -21,7 +20,10 @@ var database = mysql.createConnection({
     host:'bnbnpjlwouew0p07mjrd-mysql.services.clever-cloud.com',
     user:'uv2js8mxroohueg0',
     password:'19tYHEBa0uTxgTQWVy3i',
-    database:'bnbnpjlwouew0p07mjrd'
+    database:'bnbnpjlwouew0p07mjrd',
+    waitForConnections: true,
+    connectionLimit: 5,
+    queueLimit: 0
 })
 
 function session_check(req,res,next){
@@ -85,10 +87,20 @@ routes.use(fileupload())
 
             // LOGIN PAGE AND DASHBORD
 
-routes.get('/',session_check,(req,res)=>{
+routes.get('/',session_check,async(req,res)=>{
     // res.send(req.session)
     var username = req.session.username
-    res.render('admin/dashboard.ejs',{username:username});
+    var New_message = 'SELECT COUNT(*) AS pending_count FROM contact_save WHERE status = "pending"'
+    var Certificats = 'SELECT COUNT(*) AS certificat_count FROM certificates'
+    var web_visitors = 'SELECT COUNT(*) AS web_visitors_count FROM website_visits'
+    var recent_new_message = 'select * from contact_save where status = "pending" limit 5'
+
+    var first_new_five_message = await query(recent_new_message)
+    var website_visite = await query(web_visitors)
+    var total_certificats = await query(Certificats)
+    var New_messages = await query(New_message)
+    res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message});
+    console.log(first_new_five_message)
 })
 routes.get('/login',(req,res)=>{
     res.render('admin/login.ejs');
