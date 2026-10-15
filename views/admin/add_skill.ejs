@@ -2,99 +2,86 @@
 
             <!-- ===== DASHBOARD CONTENT ===== -->
             <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mb-1">Add Skill</h1>
-                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </div>
+                
+<div class="container-fluid" style="padding:30px;background:#f4f6fb;min-height:100vh;">
+    <!-- Page Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:30px;">
+        <div>
+            <h1 style="font-size:30px;font-weight:800;color:#252b48;margin:0 0 8px 0;">
+                Add Skill
+            </h1>
+            <p style="font-size:14px;color:#858ba3;margin:0;">
+                Welcome back, <%=username%> Here's your overview
+            </p>
+        </div>
+        <div style="background:#e9e8ff;color:#6259e8;padding:11px 18px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:1px;">
+            SKILL SETTINGS
+        </div>
+    </div>
+    <!-- Main Form Card -->
+    <div style="max-width:850px;margin:0 auto;background:white;border-radius:18px;overflow:hidden;box-shadow:0 8px 35px rgba(35,45,90,0.08);">
+        <!-- Card Header -->
+        <div style="padding:27px 30px;background:linear-gradient(135deg,#6d67ff,#8b83ff);color:white;">
+            <h2 style="font-size:23px;font-weight:800;margin:0 0 8px 0;">
+                <i class="fas fa-laptop-code" style="margin-right:10px;"></i>
+                Add New Skill
+            </h2>
+            <p style="font-size:13px;color:#eeedff;margin:0;">
+                Add a technology and specify your skill proficiency
+            </p>
+        </div>
+        <!-- Form Body -->
+        <form action="/admin/add_skill_save" method="post" style="padding:30px;">
+            <!-- Technology -->
+            <div style="margin-bottom:25px;">
+                <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                    <i class="fas fa-code" style="color:#6d67ff;margin-right:8px;"></i>
+                    Technology
+                </label>
+                <input
+                    type="text"
+                    name="tecnology"
+                    placeholder="e.g. HTML, CSS, JavaScript, Python"
+                    style="box-sizing:border-box;width:100%;height:50px;padding:0 16px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;color:#303650;outline:none;"
+                >
+                <p style="font-size:12px;color:#9298ac;margin:8px 0 0 0;">
+                    Enter the name of the technology you know.
+                </p>
+            </div>
+            <!-- Percentage -->
+            <div style="margin-bottom:30px;">
+                <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                    <i class="fas fa-chart-bar" style="color:#6d67ff;margin-right:8px;"></i>
+                    Percentage
+                </label>
+                <input
+                    type="text"
+                    name="percentage"
+                    placeholder="e.g. 80%"
+                    style="box-sizing:border-box;width:100%;height:50px;padding:0 16px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;color:#303650;outline:none;"
+                >
+                <p style="font-size:12px;color:#9298ac;margin:8px 0 0 0;">
+                    Enter your skill level as a percentage.
+                </p>
+            </div>
 
-                    <!-- Stat Cards -->
-                     <div>
-                        <form action="/admin/add_skill_save" method="post">
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Technology</label><br>
-                            <input type="text" name="tecnology" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Percentage</label><br>
-                            <input type="text" name="percentage" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
-                                Save
-                            </button>
+            <!-- Save Button -->
+            <div style="display:flex;justify-content:flex-end;padding-top:22px;border-top:1px solid #edf0f7;">
 
-                        </form>
-                     </div>
-                    <!-- <div class="row g-4">
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="stat-card">
-                                <div class="stat-icon bg-primary">
-                                    <i class="fas fa-folder-open"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 class="stat-number" data-count="156">0</h3>
-                                    <p class="stat-label">Total Projects</p>
-                                </div>
-                                <div class="stat-change positive">
-                                    <i class="fas fa-arrow-up"></i> 12%
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="stat-card">
-                                <div class="stat-icon bg-success">
-                                    <i class="fas fa-blog"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 class="stat-number" data-count="48">0</h3>
-                                    <p class="stat-label">Blog Posts</p>
-                                </div>
-                                <div class="stat-change positive">
-                                    <i class="fas fa-arrow-up"></i> 8%
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="stat-card">
-                                <div class="stat-icon bg-warning">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 class="stat-number" data-count="32">0</h3>
-                                    <p class="stat-label">Messages</p>
-                                </div>
-                                <div class="stat-change negative">
-                                    <i class="fas fa-arrow-down"></i> 3%
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="stat-card">
-                                <div class="stat-icon bg-danger">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <div class="stat-info">
-                                    <h3 class="stat-number" data-count="1240">0</h3>
-                                    <p class="stat-label">Visitors</p>
-                                </div>
-                                <div class="stat-change positive">
-                                    <i class="fas fa-arrow-up"></i> 24%
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                <button
+                    type="submit"
+                    style="border:none;background:linear-gradient(135deg,#6d67ff,#554be8);color:white;padding:14px 35px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 5px 15px rgba(109,103,255,0.25);"
+                >
+                    <i class="fas fa-save" style="margin-right:8px;"></i>
+                    Save Skill
+                </button>
 
-                    <!-- Charts Row -->
-                    
+            </div>
 
-                    <!-- Recent Activity & Messages -->
-                    
-                </div>
+        </form>
+    </div>
+</div>
+
             </div>
 
  <%-include('footer.ejs'); %>

@@ -1,39 +1,130 @@
 <%-include('header.ejs')%>
    <!-- ===== DASHBOARD CONTENT ===== -->
             <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mb-1">Add Blog</h1>
-                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </div>
+          
+<div class="container-fluid" style="padding: 20px;">
 
-                    <!-- Stat Cards -->
-                     <div>
-                        <form action="/admin/add_post" method="post" enctype="multipart/form-data">
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Post Date</label><br>
-                            <input type="date" name="post_date" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Post Name</label><br>
-                            <input type="text" name="post_name" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Post Discription</label><br>
-                            <input type="text" name="post_discription" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Add Image</label><br>
-                            <input type="file" name="image" style="height:30px;width:200px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Add link</label><br>
-                            <input type="url" name="post_url" style="height:30px;width:200px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
-                                Save
-                            </button>
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center"
+         style="padding: 20px 0; margin-bottom: 25px;
+                border-bottom: 2px solid #e9ecef;">
 
-                        </form>
-                     </div>
-                  
-                    
-                </div>
+        <div>
+            <h1 class="h3 mb-1"
+                style="font-weight: 700; color: #2c3e50;">
+                Add Blog
+            </h1>
+
+            <p class="text-muted small mb-0">
+                Welcome back,<%=username%> Here's your overview
+            </p>
+        </div>
+
+        <div></div>
+    </div>
+
+    <!-- Blog Form Card -->
+    <div style="max-width: 700px; width: 100%; box-sizing: border-box;
+                margin: 25px auto; padding: 30px;
+                background: #ffffff; border-radius: 18px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+                border: 1px solid #edf0f5;">
+
+        <h4 style="text-align: center; color: #5145cd;
+                   font-weight: 700; margin-bottom: 8px;">
+            <i class="fa fa-pencil-square-o"></i> Blog Details
+        </h4>
+
+        <p style="text-align: center; color: #8892a0;
+                  font-size: 14px; margin-bottom: 28px;">
+            Fill in the details to add your blog post
+        </p>
+
+        <form action="/admin/add_post" method="post" enctype="multipart/form-data">
+
+            <label style="display: block; font-size: 15px;
+                          color: #344054; font-weight: 600;
+                          margin-bottom: 8px;">
+                <i class="fa fa-calendar" style="color: #6d67ff;"></i>
+                Post Date
+            </label>
+
+            <input type="date" name="post_date"
+                   style="display: block; width: 100%; height: 46px;
+                          box-sizing: border-box; padding: 0 12px;
+                          border: 1px solid #d5dbea; border-radius: 9px;
+                          background: #fafbff; font-size: 15px;
+                          margin-bottom: 20px;"/>
+
+            <label style="display: block; font-size: 15px;
+                          color: #344054; font-weight: 600;
+                          margin-bottom: 8px;">
+                <i class="fa fa-file-text-o" style="color: #6d67ff;"></i>
+                Post Name
+            </label>
+
+            <input type="text" name="post_name"
+                   style="display: block; width: 100%; height: 46px;
+                          box-sizing: border-box; padding: 0 12px;
+                          border: 1px solid #d5dbea; border-radius: 9px;
+                          background: #fafbff; font-size: 15px;
+                          margin-bottom: 20px;"/>
+
+            <label style="display: block; font-size: 15px;
+                          color: #344054; font-weight: 600;
+                          margin-bottom: 8px;">
+                <i class="fa fa-align-left" style="color: #6d67ff;"></i>
+                Post Discription
+            </label>
+
+            <input type="text" name="post_discription"
+                   style="display: block; width: 100%; height: 46px;
+                          box-sizing: border-box; padding: 0 12px;
+                          border: 1px solid #d5dbea; border-radius: 9px;
+                          background: #fafbff; font-size: 15px;
+                          margin-bottom: 20px;"/>
+
+            <label style="display: block; font-size: 15px;
+                          color: #344054; font-weight: 600;
+                          margin-bottom: 8px;">
+                <i class="fa fa-image" style="color: #6d67ff;"></i>
+                Add Image
+            </label>
+
+            <input type="file" name="image"
+                   style="display: block; width: 100%; box-sizing: border-box;
+                          padding: 11px; border: 1px dashed #9b9afc;
+                          border-radius: 9px; background: #f8f8ff;
+                          font-size: 14px; margin-bottom: 20px;"/>
+
+            <label style="display: block; font-size: 15px;
+                          color: #344054; font-weight: 600;
+                          margin-bottom: 8px;">
+                <i class="fa fa-link" style="color: #6d67ff;"></i>
+                Add link
+            </label>
+
+            <input type="url" name="post_url"
+                   style="display: block; width: 100%; height: 46px;
+                          box-sizing: border-box; padding: 0 12px;
+                          border: 1px solid #d5dbea; border-radius: 9px;
+                          background: #fafbff; font-size: 15px;
+                          margin-bottom: 25px;"/>
+
+            <button type="submit"
+                    style="display: block; width: 100%; height: 47px;
+                           background: linear-gradient(135deg, #6d67ff, #5145cd);
+                           color: white; border: none; border-radius: 10px;
+                           font-size: 16px; font-weight: 600;
+                           cursor: pointer;
+                           box-shadow: 0 5px 12px rgba(109,103,255,0.25);">
+                <i class="fa fa-save"></i> Save
+            </button>
+
+        </form>
+    </div>
+
+</div>
+
             </div>
 <%-include('footer.ejs')%>

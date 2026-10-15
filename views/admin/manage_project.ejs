@@ -2,63 +2,112 @@
     
             <!-- ===== DASHBOARD CONTENT ===== -->
             <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mb-1">Manage Project</h1>
-                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </div>
+                
+<div class="container-fluid" style="padding: 20px;">
 
-                    <!-- Stat Cards -->
-                     <div>
-                       <table border="1" width="100%" style="height:25px;">
-                        <tr style="background-color:skyblue;text-align:center;font-size:21px;">
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center"
+         style="padding: 20px 0; margin-bottom: 25px; border-bottom: 2px solid #e9ecef;">
 
-                            <th>Sr</th>
-                            <th>project name</th>
-                            <th>project category</th>
-                            <th>Background Image</th>
-                            <th>Action</th>
+        <div>
+            <h1 class="h3 mb-1" style="font-weight: 700; color: #2c3e50;">
+                Manage Project
+            </h1>
+            <p class="text-muted small mb-0">
+                Welcome back,<%=username%> Here's your overview
+            </p>
+        </div>
 
+        <div></div>
+    </div>
 
-                        </tr>
-                        
-                     <%   for(var i=0;i<project.length;i++){ %>
-                        <tr style="height:30px;background-color:rgb(214, 209, 209);font-size:20px;text-align:center;border-bottom:1px solid black;">
-                            <td><%=i+1%></td>
-                            <td><%=project[i].Project_name%></td>
-                            <td><%=project[i].Project_category%></td>
-                            
-                            <td>
-                                <video 
-                                    src="/<%= project[i].Background_img %>" 
-                                    controls
-                                    style="width: 300px; height: 170px;">
-                                </video>      
-                            </td>
+    <!-- Project Table -->
+    <div style="background: #ffffff; padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+                overflow-x: auto;">
 
+        <table border="0" width="100%"
+               style="border-collapse: separate; border-spacing: 0;
+                      min-width: 850px;">
 
-                            <td>
-                                <a href="/admin/del_project/<%=project[i].id%>/<%=project[i].Background_img%>">
-                                    <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
-                                </a>
-                                <a>
-                                    <button class="btn btn-success"><i class="fa fa-pencil"></i></button>
+            <tr style="background: linear-gradient(135deg, #4776E6, #6C5CE7);
+                       color: white; text-align: center; font-size: 15px;">
 
-                                </a>
-                            </td>
+                <th style="padding: 17px 12px; border-radius: 10px 0 0 0;">Sr</th>
+                <th style="padding: 17px 12px;">Project Name</th>
+                <th style="padding: 17px 12px;">Project Category</th>
+                <th style="padding: 17px 12px;">Background Image</th>
+                <th style="padding: 17px 12px; border-radius: 0 10px 0 0;">Action</th>
 
-                        </tr>
-                        <% } %>
-                       </table>
-                     </div>
-                    
-                </div>
+            </tr>
+
+            <% for(var i=0;i<project.length;i++){ %>
+
+            <tr style="background-color: <%= i % 2 === 0 ? '#f7f8ff' : '#ffffff' %>;
+                       text-align: center; font-size: 15px; color: #344054;">
+
+                <td style="padding: 16px 12px; border-bottom: 1px solid #e9ecef;">
+                    <%=i+1%>
+                </td>
+
+                <td style="padding: 16px 12px; border-bottom: 1px solid #e9ecef;
+                           font-weight: 600; color: #2c3e50;">
+                    <%=project[i].Project_name%>
+                </td>
+
+                <td style="padding: 16px 12px; border-bottom: 1px solid #e9ecef;">
+                    <span style="display: inline-block; padding: 7px 12px;
+                                 background: #eeedff; color: #5145cd;
+                                 border-radius: 20px; font-size: 13px;
+                                 font-weight: 600;">
+                        <%=project[i].Project_category%>
+                    </span>
+                </td>
+
+                <td style="padding: 16px 12px; border-bottom: 1px solid #e9ecef;">
+                    <video
+                        src="/<%= project[i].Background_img %>"
+                        controls
+                        style="width: 260px; height: 150px; max-width: 100%;
+                               object-fit: cover; border-radius: 10px;
+                               background: #111827;
+                               box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    </video>
+                </td>
+
+                <td style="padding: 16px 12px; border-bottom: 1px solid #e9ecef;
+                           white-space: nowrap;">
+
+                    <a href="/admin/del_project/<%=project[i].id%>/<%=project[i].Background_img%>"
+                       style="text-decoration: none; margin-right: 6px;">
+
+                        <button class="btn btn-danger"
+                                style="border-radius: 8px; padding: 9px 12px;
+                                       box-shadow: 0 3px 8px rgba(220,53,69,0.2);">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </a>
+
+                    <a>
+                        <button class="btn btn-success"
+                                style="border-radius: 8px; padding: 9px 12px;
+                                       box-shadow: 0 3px 8px rgba(25,135,84,0.2);">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </a>
+
+                </td>
+
+            </tr>
+
+            <% } %>
+
+        </table>
+    </div>
+
+</div>
+
             </div>
 
  <%-include('footer.ejs'); %>

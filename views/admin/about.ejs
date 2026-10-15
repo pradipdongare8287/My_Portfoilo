@@ -5,53 +5,175 @@
 
             <!-- ===== DASHBOARD CONTENT ===== -->
             <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mb-1">Add About</h1>
-                            <p class="text-muted small mb-0">Welcome back, Here's your overview</p>
-                        </div>
-                        <div>
-                           
+            
+<div class="container-fluid" style="padding:30px;background:#f4f6fb;min-height:100vh;">
+    <!-- Page Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;flex-wrap:wrap;gap:10px;">
+        <div>
+            <h1 style="font-size:30px;font-weight:800;color:#202747;margin:0 0 8px 0;">
+                Edit About
+            </h1>
+            <p style="font-size:14px;color:#858ba3;margin:0;">
+                Update your personal information and profile details
+            </p>
+        </div>
+        <div style="background:#e9e8ff;color:#6259e8;padding:10px 18px;border-radius:30px;font-size:13px;font-weight:bold;">
+            ABOUT SETTINGS
+        </div>
+    </div>
+
+    <!-- Form Card -->
+    <div style="max-width:1050px;margin:0 auto;background:white;border-radius:18px;box-shadow:0 8px 35px rgba(35,45,90,0.08);overflow:hidden;">
+        <!-- Card Header -->
+        <div style="padding:25px 30px;background:linear-gradient(135deg,#6d67ff,#8b83ff);color:white;">
+            <h2 style="font-size:22px;font-weight:700;margin:0 0 7px 0;">
+                Personal Information
+            </h2>
+            <p style="font-size:13px;margin:0;color:#eeedff;">
+                Manage your profile information below
+            </p>
+        </div>
+        <!-- Form Body -->
+        <form action="/admin/save_about/<%=deta.Image%>" method="post" enctype="multipart/form-data"
+              style="padding:30px;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:22px;">
+                <!-- Position -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                        Position
+                    </label>
+                    <input type="text" name="position" value="<%=deta.position%>"
+                    style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+                <!-- Experience Description -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                        Experience Description
+                    </label>
+                    <input type="text" name="expirience_dicription" value="<%=deta.expirience_dicription%>"
+                    style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+                <!-- Name -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                        Full Name
+                    </label>
+                    <input type="text" name="name" value="<%=deta.name%>"
+                    style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+                <!-- Email -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                        Email Address
+                    </label>
+                    <input type="email" name="email" value="<%=deta.email%>"
+                    style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+                <!-- Location -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                        Location
+                    </label>
+                    <input type="text" name="location" value="<%=deta.location%>"
+                    style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+                <!-- Freelance -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                        Freelance Status
+                    </label>
+                    <input type="text" name="freelance" value="<%=deta.freelance%>"
+                    style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+            </div>
+            <!-- Statistics Section -->
+            <div style="margin-top:32px;padding-top:25px;border-top:1px solid #edf0f7;">
+                <h3 style="font-size:18px;color:#252d4b;font-weight:800;margin:0 0 22px 0;">
+                    Profile Statistics
+                </h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:22px;">
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                            Projects Completed
+                        </label>
+                        <input type="number" name="Project_complete" value="<%=deta.Project_complete%>"
+                        style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                            Happy Clients
+                        </label>
+                        <input type="number" name="happy_client" value="<%=deta.happy_client%>"
+                        style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                            Awards Won
+                        </label>
+                        <input type="number" name="awards_won" value="<%=deta.Awards_won%>"
+                        style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                    </div>
+                    <div>
+                        <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:9px;">
+                            Years Experience
+                        </label>
+                        <input type="number" name="year_of_expirence" value="<%=deta.year_of_expirence%>"
+                        style="box-sizing:border-box;width:100%;height:46px;padding:0 14px;border:1px solid #dfe3ef;border-radius:9px;background:#fafbff;font-size:14px;outline:none;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div style="margin-top:32px;padding-top:25px;border-top:1px solid #edf0f7;">
+
+                <h3 style="font-size:18px;color:#252d4b;font-weight:800;margin:0 0 22px 0;">
+                    Profile Image
+                </h3>
+
+                <div style="display:flex;align-items:center;gap:25px;flex-wrap:wrap;">
+
+                    <!-- Old Image -->
+                    <div style="padding:15px;border:1px solid #e5e8f2;border-radius:12px;background:#fafbff;text-align:center;">
+                        <img src="/<%=deta.Image%>"
+                             alt="Current profile image"
+                             style="width:125px;height:125px;object-fit:cover;border-radius:12px;border:3px solid white;box-shadow:0 3px 12px rgba(0,0,0,0.12);">
+                        <p style="font-size:12px;color:#777f98;margin:10px 0 0 0;">
+                            Current Image
+                        </p>
+                    </div>
+
+                    <!-- New Image -->
+                    <div style="flex:1;min-width:220px;">
+                        <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:12px;">
+                            Upload New Photo
+                        </label>
+
+                        <div style="padding:22px;border:2px dashed #c9c8ff;border-radius:12px;background:#fafaff;">
+                            <input type="file" name="photo" accept="image/*"
+                                   style="width:100%;font-size:13px;color:#555;">
+                            <p style="font-size:12px;color:#858ba3;margin:12px 0 0 0;">
+                                Select a new image from your computer.
+                            </p>
                         </div>
                     </div>
 
-                    <!-- Stat Cards -->
-                     <div>
-                        <form action="/admin/save_about/<%=deta.Image%>" method="post" enctype="multipart/form-data">
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Positon</label><br>
-                            <input type="text" name="position" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value=" <%=deta.position%>"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">experience_discription</label><br>
-                            <input type="text" name="expirience_dicription" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.expirience_dicription%>" /><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Name</label><br>
-                            <input type="text" name="name" style="height:50px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.name%>" /><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Email</label><br>
-                            <input type="email" name="email"  style="height:50px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;" value="<%=deta.email%>"/><br>
+                </div>
+            </div>
 
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Location</label><br>
-                            <input type="text" name="location" style="margin-left:30px;height:40px;" value="<%=deta.location%>"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Freelance:</label><br>
-                            <input type="text" name="freelance" style="margin-left:30px;height:40px;" value="<%=deta.freelance%>"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Projects Completed</label><br>
-                            <input type="number" name="Project_complete" style="margin-left:30px;height:40px;" value="<%=deta.Project_complete%>"/><br>
-                             <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Happy Clients</label><br>
-                            <input type="number" name="happy_client" style="margin-left:30px;height:40px;" value="<%=deta.happy_client%>"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Awards Won</label><br>
-                            <input type="number" name="awards_won" style="margin-left:30px;height:40px;" value="<%=deta.Awards_won%>"/><br> 
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Years Experience</label><br>
-                            <input type="number" name="year_of_expirence" style="margin-left:30px;height:40px;" value="<%=deta.year_of_expirence%>"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Old Image</label><br>
-                            <img src="/<%=deta.Image%>" height="100px" width="100px" style="margin-left:30px;"/><br>
-                             <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Add New Photo</label><br>
-                            <input type="file" name="photo" accept="photo/*" style="margin-left:30px;height:40px;"/><br>
-                            <button type="submit" style="height:34px;width:80px;margin-top:40px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
-                                Save
-                            </button>
-                            <!-- <h1><%=deta.freelance%></h1> -->
-                        </form>
-                     </div>
-                 </div>
+            <!-- Buttons -->
+            <div style="display:flex;justify-content:flex-end;margin-top:35px;padding-top:25px;border-top:1px solid #edf0f7;">
+
+                <button type="submit"
+                        style="border:none;background:linear-gradient(135deg,#6d67ff,#554be8);color:white;padding:13px 35px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 5px 15px rgba(109,103,255,0.25);">
+                    Save Changes &#10003;
+                </button>
+
+            </div>
+
+        </form>
+    </div>
+</div>
+
             </div>
             <!-- Page Header -->
                    

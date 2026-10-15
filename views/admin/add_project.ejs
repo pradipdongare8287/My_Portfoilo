@@ -2,39 +2,98 @@
 
             <!-- ===== DASHBOARD CONTENT ===== -->
             <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mb-1">Add Project</h1>
-                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </div>
+              
+<div class="container-fluid" style="padding: 20px;">
 
-                    <!-- Stat Cards -->
-                     <div>
-                        <form action="/admin/add_project" method="post" enctype="multipart/form-data">
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Project Name</label><br>
-                            <input type="text" name="project_name" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Project Category</label><br>
-                            <input type="text" name="project_category" style="height:30px;width:400px;border:2px solid skyblue;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                             <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;margin-top:30px;">Project video </label><br>
-                            <input type="file" name="project_video" style="height:40px;width:250px;z-index:9999;margin-left:30px;" accept="video/*"/><Br>
-                            <!-- <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;margin-top:30px;">Old image</label><br> -->
-                            <!-- <img src="" style="height:100px;width:100px;margin-left:30px;margin-top:60px;"/><br><br> -->
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center"
+         style="padding: 20px 0; margin-bottom: 25px; border-bottom: 2px solid #e9ecef;">
 
-                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
-                                Save
-                            </button>
+        <div>
+            <h1 class="h3 mb-1" style="font-weight: 700; color: #2c3e50;">
+                Add Project
+            </h1>
+            <p class="text-muted small mb-0">
+                Welcome back,<%=username%> Here's your overview
+            </p>
+        </div>
 
-                        </form>
-                     </div>
-                  
-                    
-                </div>
+        <div></div>
+    </div>
+
+    <!-- Project Form -->
+    <div style="max-width: 650px; margin: 20px auto; background: #ffffff;
+                padding: 35px; border-radius: 18px;
+                box-shadow: 0 8px 30px rgba(0,0,0,0.09);
+                border: 1px solid #edf0f5;">
+
+        <h4 style="color: #4f46e5; font-weight: 700;
+                   margin-bottom: 8px; text-align: center;">
+            <i class="fa fa-folder-open"></i> Project Details
+        </h4>
+
+        <p style="text-align: center; color: #8892a0;
+                  font-size: 14px; margin-bottom: 30px;">
+            Enter your project information below
+        </p>
+
+        <form action="/admin/add_project" method="post" enctype="multipart/form-data">
+
+            <label style="display: block; font-size: 16px; color: #344054;
+                          font-weight: 600; margin-bottom: 8px;">
+                Project Name
+            </label>
+
+            <input type="text" name="project_name"
+                   style="height: 45px; width: 100%; box-sizing: border-box;
+                          border: 1px solid #d5dbea; border-radius: 9px;
+                          padding: 0 14px; margin-bottom: 22px;
+                          outline: none; background: #fafbff;
+                          font-size: 15px;"
+            />
+
+            <label style="display: block; font-size: 16px; color: #344054;
+                          font-weight: 600; margin-bottom: 8px;">
+                Project Category
+            </label>
+
+            <input type="text" name="project_category"
+                   style="height: 45px; width: 100%; box-sizing: border-box;
+                          border: 1px solid #d5dbea; border-radius: 9px;
+                          padding: 0 14px; margin-bottom: 22px;
+                          outline: none; background: #fafbff;
+                          font-size: 15px;"
+            />
+
+            <label style="display: block; font-size: 16px; color: #344054;
+                          font-weight: 600; margin-bottom: 8px;">
+                <i class="fa fa-video-camera" style="color: #6d67ff;"></i>
+                Project Video
+            </label>
+
+            <input type="file" name="project_video" accept="video/*"
+                   style="width: 100%; box-sizing: border-box;
+                          padding: 12px; margin-bottom: 25px;
+                          border: 1px dashed #9b9afc; border-radius: 9px;
+                          background: #f8f8ff; color: #475467;
+                          font-size: 14px;"
+            />
+
+            <button type="submit"
+                    style="height: 46px; width: 100%;
+                           background: linear-gradient(135deg, #6d67ff, #5145cd);
+                           color: white; border: none; border-radius: 10px;
+                           font-size: 16px; font-weight: 600;
+                           cursor: pointer;
+                           box-shadow: 0 5px 12px rgba(109,103,255,0.25);">
+                <i class="fa fa-save"></i> Save Project
+            </button>
+
+        </form>
+    </div>
+
+</div>
+
             </div>
 
  <%-include('footer.ejs'); %>

@@ -2,58 +2,165 @@
 
             <!-- ===== DASHBOARD CONTENT ===== -->
             <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mb-1">Add Experience</h1>
-                            <p class="text-muted small mb-0">Welcome back,<%=username%> Here's your overview</p>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </div>
+            
+<div class="container-fluid" style="padding:30px;background:#f4f6fb;min-height:100vh;">
 
-                    <!-- Stat Cards -->
-                     <div>
-                        <form action="/admin/save_expirence" method="post">
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Experience Year (Y-Y)</label><br>
-                            <input type="text" name="experience_year" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Position</label><br>
-                            <input type="text" name="Position" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Experience Company</label><br>
-                            <input type="text" name="experience_company" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">experience_discription</label><br>
-                            <input type="text" name="experience_disc" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
-                                Save
-                            </button>
+    <!-- Main Page Header -->
+    <div style="margin-bottom:30px;">
+        <h1 style="font-size:30px;font-weight:800;color:#252b48;margin:0 0 8px 0;">
+            Experience & Education
+        </h1>
+        <p style="font-size:14px;color:#858ba3;margin:0;">
+            Welcome back, <%=username%> — Manage your career and academic details
+        </p>
+    </div>
 
-                        </form>
-                     </div>
+    <!-- Experience Card -->
+    <div style="max-width:1050px;margin:0 auto 35px auto;background:white;border-radius:18px;overflow:hidden;box-shadow:0 8px 35px rgba(35,45,90,0.08);">
 
-                     <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mt-4">Add Education </h1>
-                            <p class="text-muted small mb-0">Welcome back, Here's your overview</p>
-                        </div>
-                    </div>
+        <!-- Experience Header -->
+        <div style="padding:25px 30px;background:linear-gradient(135deg,#6d67ff,#8b83ff);color:white;">
+            <h2 style="font-size:23px;font-weight:800;margin:0 0 8px 0;">
+                <i class="fa fa-briefcase" style="margin-right:10px;"></i>
+                Add Experience
+            </h2>
+            <p style="font-size:13px;color:#eeedff;margin:0;">
+                Add your professional experience and company details
+            </p>
+        </div>
 
-                    <form action="/admin/save_education" method="post">
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Eduction Year (Y-Y)</label><br>
-                            <input type="text" name="eduction_year" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Qualification</label><br>
-                            <input type="text" name="qualification" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Qualification University</label><br>
-                            <input type="text" name="university" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
-                                Save
-                            </button>
+        <!-- Experience Form -->
+        <form action="/admin/save_expirence" method="post" style="padding:30px;">
 
-                        </form>
-                   
-                  
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px;">
+
+                <!-- Experience Year -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                        <i class="fa fa-calendar-alt" style="color:#6d67ff;margin-right:7px;"></i>
+                        Experience Year (Y-Y)
+                    </label>
+                    <input type="text" name="experience_year"
+                    placeholder="e.g. 2024-2026"
+                    style="box-sizing:border-box;width:100%;height:48px;padding:0 15px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;outline:none;">
                 </div>
+
+                <!-- Position -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                        <i class="fa fa-user-tie" style="color:#6d67ff;margin-right:7px;"></i>
+                        Position
+                    </label>
+                    <input type="text" name="Position"
+                    placeholder="e.g. Web Developer"
+                    style="box-sizing:border-box;width:100%;height:48px;padding:0 15px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+
+                <!-- Company -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                        <i class="fa fa-building" style="color:#6d67ff;margin-right:7px;"></i>
+                        Experience Company
+                    </label>
+                    <input type="text" name="experience_company"
+                    placeholder="Enter company name"
+                    style="box-sizing:border-box;width:100%;height:48px;padding:0 15px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                        <i class="fa fa-align-left" style="color:#6d67ff;margin-right:7px;"></i>
+                        Experience Description
+                    </label>
+                    <input type="text" name="experience_disc"
+                    placeholder="Describe your work experience"
+                    style="box-sizing:border-box;width:100%;height:48px;padding:0 15px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+
+            </div>
+
+            <!-- Experience Save Button -->
+            <div style="display:flex;justify-content:flex-end;margin-top:30px;padding-top:23px;border-top:1px solid #edf0f7;">
+                <button type="submit"
+                style="border:none;background:linear-gradient(135deg,#6d67ff,#554be8);color:white;padding:13px 30px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 5px 15px rgba(109,103,255,0.22);">
+                    <i class="fa fa-save" style="margin-right:8px;"></i>
+                    Save Experience
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+
+    <!-- Education Card -->
+    <div style="max-width:1050px;margin:0 auto;background:white;border-radius:18px;overflow:hidden;box-shadow:0 8px 35px rgba(35,45,90,0.08);">
+
+        <!-- Education Header -->
+        <div style="padding:25px 30px;background:linear-gradient(135deg,#159b87,#35b9a1);color:white;">
+            <h2 style="font-size:23px;font-weight:800;margin:0 0 8px 0;">
+                <i class="fa fa-graduation-cap" style="margin-right:10px;"></i>
+                Add Education
+            </h2>
+            <p style="font-size:13px;color:#e5fff9;margin:0;">
+                Add your qualifications and university information
+            </p>
+        </div>
+
+        <!-- Education Form -->
+        <form action="/admin/save_education" method="post" style="padding:30px;">
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px;">
+
+                <!-- Education Year -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                        <i class="fa fa-calendar-alt" style="color:#159b87;margin-right:7px;"></i>
+                        Education Year (Y-Y)
+                    </label>
+                    <input type="text" name="eduction_year"
+                    placeholder="e.g. 2023-2026"
+                    style="box-sizing:border-box;width:100%;height:48px;padding:0 15px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+
+                <!-- Qualification -->
+                <div>
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                        <i class="fa fa-certificate" style="color:#159b87;margin-right:7px;"></i>
+                        Qualification
+                    </label>
+                    <input type="text" name="qualification"
+                    placeholder="e.g. Bachelor of Commerce"
+                    style="box-sizing:border-box;width:100%;height:48px;padding:0 15px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+
+                <!-- University -->
+                <div style="grid-column:1/-1;">
+                    <label style="display:block;font-size:14px;font-weight:700;color:#343b59;margin-bottom:10px;">
+                        <i class="fa fa-university" style="color:#159b87;margin-right:7px;"></i>
+                        Qualification University
+                    </label>
+                    <input type="text" name="university"
+                    placeholder="Enter university or college name"
+                    style="box-sizing:border-box;width:100%;height:48px;padding:0 15px;border:1px solid #dfe3ef;border-radius:10px;background:#fafbff;font-size:14px;outline:none;">
+                </div>
+
+            </div>
+
+            <!-- Education Save Button -->
+            <div style="display:flex;justify-content:flex-end;margin-top:30px;padding-top:23px;border-top:1px solid #edf0f7;">
+                <button type="submit"
+                style="border:none;background:linear-gradient(135deg,#159b87,#10816f);color:white;padding:13px 30px;border-radius:10px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 5px 15px rgba(21,155,135,0.2);">
+                    <i class="fa fa-save" style="margin-right:8px;"></i>
+                    Save Education
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
             </div>
             <!-- Page Header -->
                    
