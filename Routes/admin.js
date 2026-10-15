@@ -93,14 +93,16 @@ routes.get('/',session_check,async(req,res)=>{
     var New_message = 'SELECT COUNT(*) AS pending_count FROM contact_save WHERE status = "pending"'
     var Certificats = 'SELECT COUNT(*) AS certificat_count FROM certificates'
     var web_visitors = 'SELECT COUNT(*) AS web_visitors_count FROM website_visits'
-    var recent_new_message = 'select * from contact_save where status = "pending" limit 5'
+    var recent_new_message = 'select * from contact_save where status = "pending" ORDER BY cid limit 5'
+    var projects_total_count = 'select count(*) as project_count from blog'
 
     var first_new_five_message = await query(recent_new_message)
     var website_visite = await query(web_visitors)
     var total_certificats = await query(Certificats)
     var New_messages = await query(New_message)
-    res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message});
-    console.log(first_new_five_message)
+    var total_project = await query(projects_total_count)
+    res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
+    // console.log(total_project)
 })
 routes.get('/login',(req,res)=>{
     res.render('admin/login.ejs');

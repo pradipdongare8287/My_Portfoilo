@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
                     label: 'Visitors',
-                    data: [1200, 1350, 1100, 1450, 1600, 1400, 1800, 2000, 1700, 1900, 2100, 2400],
+                    data: [400, 600, 500, 800, 700, 200, 70, 190, 180, 100, 280, 250],
                     borderColor: '#6c63ff',
                     backgroundColor: 'rgba(108, 99, 255, 0.1)',
                     fill: true,
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: {
                 labels: ['Web Development', 'UI/UX Design', 'Mobile Apps', 'Branding'],
                 datasets: [{
-                    data: [35, 25, 20, 20],
+                    data: [35, 25, 0, 20],
                     backgroundColor: ['#6c63ff', '#28a745', '#ffc107', '#dc3545'],
                     borderWidth: 0,
                 }]
