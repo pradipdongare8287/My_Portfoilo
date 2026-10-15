@@ -179,27 +179,34 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ================================================
-    // 7. SKILL PROGRESS BARS
+   // 7. SKILL PROGRESS BARS
     // ================================================
-    let skillBarsAnimated = false;
     
-    function animateSkillBars() {
-        if (skillBarsAnimated) return;
-        
-        const triggerPoint = window.innerHeight * 0.8;
-        const skillsSection = document.querySelector('.resume');
-        
-        if (skillsSection.getBoundingClientRect().top < triggerPoint) {
-            skillBarsAnimated = true;
-            
-            document.querySelectorAll('.progress-fill').forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                setTimeout(function() {
-                    bar.style.width = width + '%';
-                }, 200);
-            });
-        }
+let skillBarsAnimated = false;
+
+function animateSkillBars() {
+    const skillsSection = document.querySelector('#resume, .resume');
+
+    if (!skillsSection || skillBarsAnimated) return;
+
+    const triggerPoint = window.innerHeight * 0.8;
+
+    if (skillsSection.getBoundingClientRect().top < triggerPoint) {
+        skillBarsAnimated = true;
+
+        document.querySelectorAll('.progress-fill').forEach(bar => {
+            const width = bar.getAttribute('data-width');
+
+            if (width !== null) {
+                bar.style.width = width + '%';
+            }
+        });
     }
+}
+
+window.addEventListener('scroll', animateSkillBars);
+window.addEventListener('load', animateSkillBars);
+setTimeout(animateSkillBars, 1000);
     
     // ================================================
     // 8. PORTFOLIO FILTER
