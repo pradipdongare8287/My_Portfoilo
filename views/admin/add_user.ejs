@@ -2,34 +2,133 @@
 
             <!-- ===== DASHBOARD CONTENT ===== -->
             <div class="page-content">
-                <div class="container-fluid">
-                    <!-- Page Header -->
-                    <div class="page-header d-flex justify-content-between align-items-center">
-                        <div>
-                            <h1 class="h3 mb-1">Add New User</h1>
-                            <p class="text-muted small mb-0">Welcome back, Here's your overview</p>
-                        </div>
-                        <div>
-                           
-                        </div>
-                    </div>
+              
+<div class="container-fluid" style="padding:20px 15px;">
 
-                    <!-- Stat Cards -->
-                     <div>
-                        <form action="/admin/add_new_user" method="post">
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;">Email Id</label><br>
-                            <input type="email" name="email" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <label style="font-size:22px;color:darkblue;font-weight:bold;margin-left:30px;margin-top:30px;margin-top:13px;">Password</label><br>
-                            <input type="password" name="password" style="height:30px;width:400px;border:2px solid black;border-radius:5px;margin-left:30px;margin-top:13px;"/><br>
-                            <button type="submit" style="height:34px;width:80px;margin-top:20px;margin-top:13px;margin-left:30px;background-color:#6d67ff;border-radius:40px;">
-                                Save
-                            </button>
+    <!-- Page Header -->
+    <div class="page-header d-flex justify-content-between align-items-center"
+         style="margin-bottom:25px;flex-wrap:wrap;gap:10px;">
+        <div>
+            <h1 class="h3 mb-1" style="font-weight:700;color:#252b48;">
+                Add New User
+            </h1>
+            <p class="text-muted small mb-0">
+                Welcome back, Here's your overview
+            </p>
+        </div>
+        <div></div>
+    </div>
 
-                        </form>
-                     </div>
-                    
-                    
-                </div>
+    <!-- Form -->
+    <div style="
+        width:100%;
+        max-width:500px;
+        margin:0 auto;
+        padding:30px 20px;
+        background:#ffffff;
+        border-radius:16px;
+        box-shadow:0 8px 30px rgba(0,0,0,0.09);
+        border:1px solid #eeeeF5;
+        box-sizing:border-box;
+    ">
+
+        <div style="text-align:center;margin-bottom:25px;">
+            <div style="
+                width:65px;
+                height:65px;
+                margin:0 auto 12px;
+                background:#eeedff;
+                border-radius:50%;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                font-size:30px;
+            ">👤</div>
+
+            <h4 style="color:#252b48;font-weight:bold;margin-bottom:6px;">
+                Create New User
+            </h4>
+
+            <p style="color:#888;font-size:14px;margin:0;">
+                Enter the user details below
+            </p>
+        </div>
+
+        <form action="/admin/add_new_user" method="post">
+
+            <label style="
+                display:block;
+                font-size:15px;
+                color:#252b48;
+                font-weight:600;
+                margin-bottom:9px;
+            ">Email Id</label>
+
+            <input type="email" name="email" required
+                placeholder="Enter your email address"
+                style="
+                    display:block;
+                    width:100%;
+                    height:46px;
+                    padding:0 14px;
+                    border:1px solid #dcdce8;
+                    border-radius:8px;
+                    margin-bottom:22px;
+                    font-size:14px;
+                    outline:none;
+                    box-sizing:border-box;
+                    background:#fafaff;
+                "/>
+
+            <label style="
+                display:block;
+                font-size:15px;
+                color:#252b48;
+                font-weight:600;
+                margin-bottom:9px;
+            ">Password</label>
+
+            <input type="password" name="password" required
+                placeholder="Enter your password"
+                style="
+                    display:block;
+                    width:100%;
+                    height:46px;
+                    padding:0 14px;
+                    border:1px solid #dcdce8;
+                    border-radius:8px;
+                    margin-bottom:25px;
+                    font-size:14px;
+                    outline:none;
+                    box-sizing:border-box;
+                    background:#fafaff;
+                "/>
+
+            <button type="submit"
+                style="
+                    display:block;
+                    width:100%;
+                    min-height:46px;
+                    padding:10px 20px;
+                    background:linear-gradient(135deg,#6d67ff,#5148e5);
+                    color:white;
+                    border:none;
+                    border-radius:9px;
+                    font-size:16px;
+                    font-weight:600;
+                    cursor:pointer;
+                    box-shadow:0 4px 12px rgba(109,103,255,0.25);
+                    transition:0.3s;
+                ">
+                Save User
+            </button>
+
+        </form>
+    </div>
+
+</div>
+
+
             </div>
 
  <%-include('footer.ejs'); %>
