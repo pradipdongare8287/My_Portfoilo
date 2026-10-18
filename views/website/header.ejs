@@ -66,8 +66,32 @@
                 <button id="themeToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
+                
             </nav>
+            <span class="time" style="color:red;margin-left:30px;">
+                    
+                </span>
         </div>
+        <script type="text/javascript">
+
+            function clock(){
+                var date_time = new Date()
+
+                var h = date_time.getHours()
+                var m = date_time.getMinutes()
+                var s = date_time.getSeconds()
+                var am_pm = h >= 12 ? 'PM' : 'AM';
+
+                h = h % 12 || 12;
+
+                // console.log(h,':',m,':',s)
+
+                document.getElementsByClassName('time')[0].innerHTML = h +':'+m+':'+s
+
+            }
+            setInterval(clock,1000)
+             
+        </script>
     </header>
 
     

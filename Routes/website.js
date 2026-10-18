@@ -4,7 +4,7 @@ const mysql = require('mysql2');
 const util = require('util')
 
 
- var database = mysql.createConnection({
+ var database = mysql.createPool({
     host:'bnbnpjlwouew0p07mjrd-mysql.services.clever-cloud.com',
     user:'uv2js8mxroohueg0',
     password:'19tYHEBa0uTxgTQWVy3i',
