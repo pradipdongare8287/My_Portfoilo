@@ -16,13 +16,13 @@ routes.use(session({
 
 routes.use(express.static('public'))
 
-var database = mysql.createConnection({
+var database = mysql.createPool({
     host:'bnbnpjlwouew0p07mjrd-mysql.services.clever-cloud.com',
     user:'uv2js8mxroohueg0',
     password:'19tYHEBa0uTxgTQWVy3i',
     database:'bnbnpjlwouew0p07mjrd',
     waitForConnections: true,
-    connectionLimit: 5,
+    connectionLimit: 6,
     queueLimit: 0
 })
 
