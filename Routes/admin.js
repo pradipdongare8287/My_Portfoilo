@@ -108,6 +108,8 @@ routes.get('/', session_check, async (req, res) => {
   
     // res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
     // console.log(total_project)
+})
+    
 
 routes.get('/login',(req,res)=>{
     res.render('admin/login.ejs');
