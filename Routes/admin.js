@@ -6,13 +6,27 @@ const session = require('express-session');
 const fileupload = require('express-fileupload');
 const path = require('path');
 const fs = require('fs');
-
+const nodemailer = require('nodemailer')
 
 routes.use(session({
     secret:'mykey',
     resave:false,
-    saveUninitialized:true
+    saveUninitialized:true,
+    cookie: {
+        maxAge: 24 * 60 * 60 * 1000,
+        httpOnly: true
+    }
 }))
+
+
+// Gmail configuration
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'pradipshankardongare',
+        pass: 'hzik tkqi fftw snkv'
+    }
+});
 
 routes.use(express.static('public'))
 
@@ -101,9 +115,38 @@ routes.get('/',session_check,async(req,res)=>{
     var total_certificats = await query(Certificats)
     var New_messages = await query(New_message)
     var total_project = await query(projects_total_count)
-    res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
+
+
+ try {
+        if (!req.session.emailSent) {
+
+            // Get visitor's browser device information
+            const userAgent =
+                req.headers['user-agent'] || 'Unknown';
+
+            await transporter.sendMail({
+                from: 'pradipshankardongare@gmail.com',
+                to: 'pradipdongare995@gmail.com',
+                subject: 'Mr. Pradip Dongare Your Admin Panel New Login Successfully 🎉',
+                text: `Pradip Shankar Dongare Your Admin Panel Just Open A Other Device...!💻📱 Device Information:${userAgent}
+                 ⌚Visit Time:- ${new Date().toLocaleString()}`
+            });
+            req.session.emailSent = true;
+            // console.log('Email sent successfully');
+        }
+
+        // res.send('<h1>Welcome to My Website!</h1
+            res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
+  
+    } catch (error) {
+        console.error('Email Error:', error);
+        res.status(500).send('Email sending failed.');
+    }
+});
+
+    // res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
     // console.log(total_project)
-})
+// })
 routes.get('/login',(req,res)=>{
     res.render('admin/login.ejs');
 })
