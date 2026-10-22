@@ -1,7 +1,8 @@
 const express = require('express');
 const routes = express.Router()
 const mysql = require('mysql2');
-const util = require('util')
+const util = require('util');
+const { route } = require('./admin');
 
 
  var database = mysql.createPool({
@@ -14,6 +15,7 @@ const util = require('util')
     queueLimit: 0
  })
 
+ routes.use(express.static('public'))
 
   routes.use(async(req,res,next)=>{
     var selectdata = `select * from hero`
