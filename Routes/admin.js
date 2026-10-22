@@ -100,23 +100,22 @@ routes.use(fileupload())
 
             // LOGIN PAGE AND DASHBORD
 
-routes.get('/',session_check,async(req,res)=>{
+routes.get('/', session_check, async (req, res) => {
     // res.send(req.session)
     var username = req.session.username
     var New_message = 'SELECT COUNT(*) AS pending_count FROM contact_save WHERE status = "pending"'
     var Certificats = 'SELECT COUNT(*) AS certificat_count FROM certificates'
     var web_visitors = 'SELECT COUNT(*) AS web_visitors_count FROM website_visits'
-    var recent_new_message = 'select * from contact_save where status = "pending" ORDER BY cid limit 5'
-    var projects_total_count = 'select count(*) as project_count from blog'
+    var recent_new_message = 'SELECT * FROM contact_save WHERE status = "pending" ORDER BY cid LIMIT 5'
+    var projects_total_count = 'SELECT COUNT(*) AS project_count FROM blog'
 
-    var first_new_five_message = await query(recent_new_message)
-    var website_visite = await query(web_visitors)
-    var total_certificats = await query(Certificats)
-    var New_messages = await query(New_message)
-    var total_project = await query(projects_total_count)
+    try {
+        var first_new_five_message = await query(recent_new_message)
+        var website_visite = await query(web_visitors)
+        var total_certificats = await query(Certificats)
+        var New_messages = await query(New_message)
+        var total_project = await query(projects_total_count)
 
-
-try {
         if (!req.session.emailSent) {
 
             // Get visitor's browser device information
@@ -130,20 +129,26 @@ try {
                 text: `Pradip Shankar Dongare Your Admin Panel Just Open A Other Device...!💻📱 Device Information:${userAgent}
                  ⌚Visit Time:- ${new Date().toLocaleString()}`
             });
+
             req.session.emailSent = true;
             // console.log('Email sent successfully');
         }
 
-        // res.send('<h1>Welcome to My Website!</h1
-            res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
-  
+        // res.send('<h1>Welcome to My Website!</h1>')
+        res.render('admin/dashboard.ejs', {
+            username: username,
+            New_messages: New_messages[0].pending_count,
+            Certificats: total_certificats[0].certificat_count,
+            website_visite: website_visite[0].web_visitors_count,
+            new_message: first_new_five_message,
+            total_project: total_project[0].project_count
+        });
+
     } catch (error) {
         console.error('Email Error:', error);
         res.status(500).send('Email sending failed.');
     }
 });
-
-
     // res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
     // console.log(total_project)
 
