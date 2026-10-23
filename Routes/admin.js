@@ -103,13 +103,69 @@ routes.get('/', session_check, async (req, res) => {
         var total_project = await query(projects_total_count)
 
           
-        res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
+        // res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
 
-  
-    // res.render('admin/dashboard.ejs',{username:username,New_messages:New_messages[0].pending_count,Certificats:total_certificats[0].certificat_count,website_visite:website_visite[0].web_visitors_count,new_message:first_new_five_message,total_project:total_project[0].project_count});
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false,
+  pool: true, 
+  maxConnections: 5, 
+  maxMessages: 100,
+  auth: {
+    user:'pradipshankardongare@gmail.com',
+    pass:'hzik tkqi fftw snkv',
+  },
+});
+
+ var time =  `${new Date().toLocaleString()}`
+ var ip = req.ip
+ var deviceInfo = req.headers['user-agent'];
+
+await transporter.sendMail({
+  from: "pradipshankardongare@gmail.com",
+  to: "mylaptopdell1212@gmail.com",
+  subject: "Admin Panel Login Alert – Pradip Dongare Portfolio",
+  html: `Hello Admin <b>Pradip Shankar Dongare<b/>,<br>
+A new login to your Portfolio Admin Panel has been detected.<br/><br/>
+
+<b>Login Details <b/><br/><br/>
+<b>Website<b/> :- Pradip Dongare Portfolio<br/><br/>
+
+<b>Event<b/> :-🔓 Admin Panel Login <br/><br/>
+
+Status :- Successful ✅ <br/><br/>
+
+<b>Login Time<b/> :- 🕑<b>${time}<b/><br/><br/>
+
+Device / Browser :- ${deviceInfo} <br/><br/>
+
+IP Address :- ${ip} <br/><br/><br/><br/>
+
+If this login was initiated by you, no action is required. 
+
+If you do not recognize this activity, please review your account security and change your admin password immediately.
+
+This is an automated security notification from your Portfolio Website.
+
+Best Regards,
+Portfolio Security System
+Pradip Dongare
+  `,
+});
+    res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
     // console.log(total_project)
 })
     
+
+                
+            
+
+
+
+
+
 
 routes.get('/login',(req,res)=>{
     res.render('admin/login.ejs');
