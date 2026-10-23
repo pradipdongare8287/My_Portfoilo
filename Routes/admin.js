@@ -108,8 +108,8 @@ routes.get('/', session_check, async (req, res) => {
 
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
-  port: 587,
-  secure: false,
+  port: 465,
+  secure: true,
   pool: true, 
   maxConnections: 5, 
   maxMessages: 100,
@@ -117,13 +117,17 @@ const transporter = nodemailer.createTransport({
     user:'pradipshankardongare@gmail.com',
     pass:'hzik tkqi fftw snkv',
   },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 20000
 });
 
  var time =  `${new Date().toLocaleString()}`
  var ip = req.ip
  var deviceInfo = req.headers['user-agent'];
 
-await transporter.sendMail({
+try{
+    await transporter.sendMail({
   from: "pradipshankardongare@gmail.com",
   to: "mylaptopdell1212@gmail.com",
   subject: "Admin Panel Login Alert – Pradip Dongare Portfolio",
@@ -155,6 +159,14 @@ Pradip Dongare
   `,
 });
     res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
+
+}
+catch(error){
+    console.log("Email failed:", error.message)
+    res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
+
+}
+    // res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
     // console.log(total_project)
 })
     
