@@ -138,72 +138,89 @@ routes.post('/add_new_user',async(req,res)=>{
 })
 
 
-routes.post('/login_check',async(req,res)=>{
-    var {username,password}=req.body;
-    var select =`select * from login where username=? and password=?`
-    var sel = await query(select,[username,password]);
-    // res.send(sel)
-    if(sel[0]){
+routes.post('/login_check', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const select = `
+            SELECT * FROM login
+            WHERE username = ? AND password = ?
+        `;
+
+        const sel = await query(select, [username, password]);
+
+        if (!sel || !sel[0]) {
+            return res.redirect('/admin/login');
+        }
+
         req.session.lid = sel[0].lid;
         req.session.username = sel[0].username;
 
-
-          const response = await fetch(
-            'https://api.brevo.com/v3/smtp/email',
-            {
-                method: 'POST',
-                headers: {
-                    'accept': 'application/json',
-                    'api-key': process.env.BREVO_API_KEY,
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify({
-                    sender: {
-                        name: 'Pradip Shankar Dongare',
-                        email: 'mylaptopdell1212@gmail.com'
+        try {
+            const response = await fetch(
+                'https://api.brevo.com/v3/smtp/email',
+                {
+                    method: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'api-key': process.env.BREVO_API_KEY,
+                        'content-type': 'application/json'
                     },
-                    to: [
-                        {
-                            email: 'pradipshankardongare@gmail.com'
-                        }
-                    ],
-                    subject: 'SECURITY ALERT — New Login Detected 🔓',
-                    textContent: `Hello Admin,!
+                    body: JSON.stringify({
+                        sender: {
+                            name: 'Pradip Shankar Dongare',
+                            email: 'mylaptopdell1212@gmail.com'
+                        },
+                        to: [
+                            {
+                                email: 'pradipshankardongare@gmail.com'
+                            }
+                        ],
+                        subject: 'SECURITY ALERT - New Login Detected',
+                        textContent: `Hello Admin,
 
-                        A user has successfully logged in to your Admin Panel. Please find the login details below..
+A user has successfully logged in to your Admin Panel.
 
-                       Login Activity Details
+Login Activity Details
 
-                        Website: 𝐏𝐫𝐚𝐝𝐢𝐩 𝐃𝐨𝐧𝐠𝐚𝐫𝐞 𝐏𝐨𝐫𝐭𝐟𝐨𝐥𝐢𝐨
+Website: Pradip Dongare Portfolio
+Event: Successful User Login
 
-                        Event: 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥 𝐔𝐬𝐞𝐫 𝐋𝐨𝐠𝐢𝐧 🔓
+Date: ${new Date().toLocaleDateString()}
+Time: ${new Date().toLocaleTimeString()}
 
-                        Date: ${new Date().toLocaleDateString()} 📅
+If this login activity is expected, no action is required.
 
-                        Time :${new Date().toLocaleTimeString()} 🕑
+If you do not recognize this activity, please review your website's security logs.
 
-                        If this login activity is expected, no action is required.
+Regards,
+Pradip Dongare Portfolio - Security System`
+                    })
+                }
+            );
 
-                        If you do not recognize this activity, please review your website's security logs and take the necessary precautions.
+            const data = await response.json();
 
-                        This is an Warning security 🔔 notification from your website.
+            console.log('Brevo Status:', response.status);
+            console.log('Brevo Response:', data);
 
-                        Regards,
-                        Pradip Dongare Portfolio — Security System
+            if (!response.ok) {
+                console.error('Brevo email failed:', data);
+            } else {
+                console.log('Brevo accepted the email request.');
+            }
 
+        } catch (emailError) {
+            console.error('Email sending error:', emailError);
+        }
 
-                        System Devloped By 𝐏𝐫𝐚𝐝𝐢𝐩 𝐃𝐨𝐧𝐠𝐚𝐫𝐞 With All copy writes resrved ❤️
-                        `
-                            })
-                        }
-                    );
-        res.redirect('/admin')
+        return res.redirect('/admin');
 
+    } catch (error) {
+        console.error('Login error:', error);
+        return res.status(500).send('Something went wrong during login.');
     }
-    else{
-        res.redirect('/admin/login')
-    }
-})
+});
 
  routes.get('/logout',session_check,(req,res)=>{
     req.session.destroy();
