@@ -176,7 +176,7 @@ routes.post('/login_check',async(req,res)=>{
 
                         Website: 𝐏𝐫𝐚𝐝𝐢𝐩 𝐃𝐨𝐧𝐠𝐚𝐫𝐞 𝐏𝐨𝐫𝐭𝐟𝐨𝐥𝐢𝐨
 
-                        Event: 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥 𝐔𝐬𝐞𝐫 𝐋𝐨𝐠𝐢𝐧
+                        Event: 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥 𝐔𝐬𝐞𝐫 𝐋𝐨𝐠𝐢𝐧 🔓
 
                         Date: ${new Date().toLocaleDateString()} 📅
 
@@ -186,7 +186,7 @@ routes.post('/login_check',async(req,res)=>{
 
                         If you do not recognize this activity, please review your website's security logs and take the necessary precautions.
 
-                        This is an Warning security notification from your website.
+                        This is an Warning security 🔔 notification from your website.
 
                         Regards,
                         Pradip Dongare Portfolio — Security System

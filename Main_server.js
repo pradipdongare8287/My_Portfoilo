@@ -11,4 +11,5 @@ app.use('/admin',admin)
 app.use(express.static('public'))
 app.listen(3002,()=>{
     console.log('Server Started on Port 3002')
-})  
+})
+
