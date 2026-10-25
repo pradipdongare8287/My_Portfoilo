@@ -105,69 +105,6 @@ routes.get('/', session_check, async (req, res) => {
           
         res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
 
-
-// const transporter = nodemailer.createTransport({
-//   host: "smtp.gmail.com",
-//   port: 465,
-//   secure: true,
-//   pool: true, 
-//   maxConnections: 5, 
-//   maxMessages: 100,
-//   auth: {
-//     user:'pradipshankardongare@gmail.com',
-//     pass:'hzik tkqi fftw snkv',
-//   },
-//     connectionTimeout: 10000,
-//     greetingTimeout: 10000,
-//     socketTimeout: 20000
-// });
-
-//  var time =  `${new Date().toLocaleString()}`
-//  var ip = req.ip
-//  var deviceInfo = req.headers['user-agent'];
-
-// try{
-//     await transporter.sendMail({
-//   from: "pradipshankardongare@gmail.com",
-//   to: "mylaptopdell1212@gmail.com",
-//   subject: "Admin Panel Login Alert – Pradip Dongare Portfolio",
-//   html: `Hello Admin <b>Pradip Shankar Dongare<b/>,<br>
-// A new login to your Portfolio Admin Panel has been detected.<br/><br/>
-
-// <b>Login Details <b/><br/><br/>
-// <b>Website<b/> :- Pradip Dongare Portfolio<br/><br/>
-
-// <b>Event<b/> :-🔓 Admin Panel Login <br/><br/>
-
-// Status :- Successful ✅ <br/><br/>
-
-// <b>Login Time<b/> :- 🕑<b>${time}<b/><br/><br/>
-
-// Device / Browser :- ${deviceInfo} <br/><br/>
-
-// IP Address :- ${ip} <br/><br/><br/><br/>
-
-// If this login was initiated by you, no action is required. 
-
-// If you do not recognize this activity, please review your account security and change your admin password immediately.
-
-// This is an automated security notification from your Portfolio Website.
-
-// Best Regards,
-// Portfolio Security System
-// Pradip Dongare
-//   `,
-// });
-//     res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
-
-// }
-// catch(error){
-//     console.log("Email failed:", error.message)
-//     res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
-
-// }
-    // res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
-    // console.log(total_project)
 })
     
 
@@ -209,6 +146,57 @@ routes.post('/login_check',async(req,res)=>{
     if(sel[0]){
         req.session.lid = sel[0].lid;
         req.session.username = sel[0].username;
+
+
+          const response = await fetch(
+            'https://api.brevo.com/v3/smtp/email',
+            {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'api-key': process.env.BREVO_API_KEY,
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    sender: {
+                        name: 'Pradip Shankar Dongare',
+                        email: 'mylaptopdell1212@gmail.com'
+                    },
+                    to: [
+                        {
+                            email: 'pradipshankardongare@gmail.com'
+                        }
+                    ],
+                    subject: 'SECURITY ALERT — New Login Detected 🔓',
+                    textContent: `Hello Admin,!
+
+                        A user has successfully logged in to your Admin Panel. Please find the login details below..
+
+                       Login Activity Details
+
+                        Website: 𝐏𝐫𝐚𝐝𝐢𝐩 𝐃𝐨𝐧𝐠𝐚𝐫𝐞 𝐏𝐨𝐫𝐭𝐟𝐨𝐥𝐢𝐨
+
+                        Event: 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥 𝐔𝐬𝐞𝐫 𝐋𝐨𝐠𝐢𝐧
+
+                        Date: ${new Date().toLocaleDateString()} 📅
+
+                        Time :${new Date().toLocaleTimeString()} 🕑
+
+                        If this login activity is expected, no action is required.
+
+                        If you do not recognize this activity, please review your website's security logs and take the necessary precautions.
+
+                        This is an Warning security notification from your website.
+
+                        Regards,
+                        Pradip Dongare Portfolio — Security System
+
+
+                        System Devloped By 𝐏𝐫𝐚𝐝𝐢𝐩 𝐃𝐨𝐧𝐠𝐚𝐫𝐞 With All copy writes resrved ❤️
+                        `
+                            })
+                        }
+                    );
         res.redirect('/admin')
 
     }
