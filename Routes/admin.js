@@ -179,22 +179,22 @@ routes.post('/login_check', async (req, res) => {
                         subject: 'SECURITY ALERT - New Login Detected',
                         textContent: `Hello Admin,
 
-A user has successfully logged in to your Admin Panel.
+                            A user has successfully logged in to your Admin Panel.
 
-Login Activity Details
+                            Login Activity Details GIven Below
 
-Website: Pradip Dongare Portfolio
-Event: Successful User Login
+                            Website: Pradip Dongare Portfolio
+                            Event: Successful User Login
 
-Date: ${new Date().toLocaleDateString()}
-Time: ${new Date().toLocaleTimeString()}
+                            Date: ${new Date().toLocaleDateString()}
+                            Time: ${new Date().toLocaleTimeString()}
 
-If this login activity is expected, no action is required.
+                            If this login activity is expected, no action is required.
 
-If you do not recognize this activity, please review your website's security logs.
+                            If you do not recognize this activity, please review your website's security logs.
 
-Regards,
-Pradip Dongare Portfolio - Security System`
+                            Regards,
+                            Pradip Dongare Portfolio - Security System`
                     })
                 }
             );
