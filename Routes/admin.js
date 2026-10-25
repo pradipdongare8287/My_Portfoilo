@@ -242,7 +242,7 @@ routes.post('/login_check', async (req, res) => {
               Website
             </td>
             <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
-              Pradip Dongare Portfolio
+              Pradip Dongare Portfolio ❤️
             </td>
           </tr>
 
@@ -251,7 +251,7 @@ routes.post('/login_check', async (req, res) => {
               Event
             </td>
             <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
-              Admin Login
+              Admin Login 🔓
             </td>
           </tr>
 
@@ -260,7 +260,7 @@ routes.post('/login_check', async (req, res) => {
               Date
             </td>
             <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
-              ${new Date().toLocaleDateString('en-IN')}
+              ${new Date().toLocaleDateString('en-IN')}  📅
             </td>
           </tr>
 
@@ -269,7 +269,7 @@ routes.post('/login_check', async (req, res) => {
               Time
             </td>
             <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
-              ${new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+                    ${new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true})} 🕑
             </td>
           </tr>
 
@@ -278,7 +278,7 @@ routes.post('/login_check', async (req, res) => {
               Status
             </td>
             <td style="padding:15px 13px;color:#059669;font-weight:700;">
-              ✓ Successful
+              ✓ Successful ✅
             </td>
           </tr>
 
@@ -303,7 +303,7 @@ routes.post('/login_check', async (req, res) => {
       </p>
 
       <p style="margin:22px 0 0;font-size:14px;line-height:1.8;color:#334155;">
-        Regards,<br>
+        Regards  🙏,<br>
         <strong style="color:#111827;">Pradip Dongare</strong> ❤️<br>
         <span style="font-size:12px;color:#64748b;">Portfolio Security System</span>
       </p>
