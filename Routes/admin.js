@@ -157,6 +157,7 @@ routes.post('/login_check', async (req, res) => {
         req.session.username = sel[0].username;
 
         try {
+            console.log("Brevo key loaded:", !!process.env.BREVO_API_KEY);
             const response = await fetch(
                 'https://api.brevo.com/v3/smtp/email',
                 {
