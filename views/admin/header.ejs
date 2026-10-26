@@ -224,7 +224,7 @@
                     <div class="dropdown">
                         <button class="btn btn-light position-relative" data-bs-toggle="dropdown">
                             <i class="fas fa-bell"></i>
-                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle">5</span>
+                            <span class="badge bg-danger position-absolute top-0 start-100 translate-middle"><%=headerData.all_login_count%></span>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end p-0" style="width: 320px;">
                             <div class="dropdown-header bg-light py-2">
@@ -235,14 +235,14 @@
                                 <div class="notification-item">
                                     <i class="fas fa-user-plus text-primary"></i>
                                     <div class="notification-content">
-                                        <p>New user registered: Admin</p>
+                                        <p>Totla Logins : <b><%=headerData.all_login_count%></b></p>
                                         <small>2 min ago</small>
                                     </div>
                                 </div>
                                 <div class="notification-item">
-                                    <i class="fas fa-comment text-success"></i>
+                                    <i class="fas fa-clock text-success"></i>
                                     <div class="notification-content">
-                                        <p>New testimonial from Admin</p>
+                                        <p>Last Login : <b><%=headerData.last_use%></b></p>
                                         <small>15 min ago</small>
                                     </div>
                                 </div>

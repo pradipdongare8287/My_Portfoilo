@@ -23,6 +23,7 @@ var database = mysql.createPool({
     user:'uv2js8mxroohueg0',
     password:'19tYHEBa0uTxgTQWVy3i',
     database:'bnbnpjlwouew0p07mjrd',
+    timezone: '+05:30',
     waitForConnections: true,
     connectionLimit: 6,
     queueLimit: 0
@@ -64,13 +65,22 @@ routes.use(async (req, res, next) => {
                                         var id = req.session.lid;
 
                                          var sql = `SELECT L.*, h.*FROM login AS L INNER JOIN hero AS h ON L.lid = h.sr_No WHERE h.sr_No = ?`;
+                                         var total_login = 'SELECT COUNT(*) AS login_count FROM login_history'
+                                         var last_login = `SELECT *FROM login_history ORDER BY login_date DESC LIMIT 1 OFFSET 1;`
+
+                                         var logins = await query(total_login)
+                                         var last_log = await query(last_login)
+                                        //  console.log(last_log[0])
+
 
                                          var data = await query(sql, [id]);
 
                                         if (data.length > 0) {
                                             res.locals.headerData = {
                                                 name: data[0].name,
-                                                photo: data[0].Photo
+                                                photo: data[0].Photo,
+                                                all_login_count : logins[0].login_count ,
+                                                last_use : last_log[0].login_date
                                             };
                                         }
 
@@ -148,6 +158,13 @@ routes.post('/login_check', async (req, res) => {
         if (sel[0]){
          req.session.lid = sel[0].lid;
         req.session.username = sel[0].username;
+
+
+
+        const login_hishotry = 'insert into login_history () values()'
+        const save_history = await query(login_hishotry)
+        // console.log(save_history)
+
          const response = await fetch(
                 'https://api.brevo.com/v3/smtp/email',
                 {
