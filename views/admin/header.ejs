@@ -208,7 +208,7 @@
                     </button>
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search..." class="form-control form-control-sm" />
+                        <input type="text" placeholder="Search..." id="adminSearch" autocomplete="off" class="form-control form-control-sm" />
                     </div>
                 </div>
                 <span class="time" style="color:darkblue;font:bold;font-size:20px;font-family:'Times New Roman', Times, serif;">
@@ -235,15 +235,15 @@
                                 <div class="notification-item">
                                     <i class="fas fa-user-plus text-primary"></i>
                                     <div class="notification-content">
-                                        <p>Totla Logins : <b><%=headerData.all_login_count%></b></p>
-                                        <small>2 min ago</small>
+                                        <p>Totla Logins : <b><%=headerData.all_login_count%> 🔑</b></p>
+                                        <small></small>
                                     </div>
                                 </div>
                                 <div class="notification-item">
                                     <i class="fas fa-clock text-success"></i>
                                     <div class="notification-content">
-                                        <p>Last Login : <b><%=headerData.last_use%></b></p>
-                                        <small>15 min ago</small>
+                                        <p>Last Login : <b><%= new Date(headerData.last_use).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) %></b></p>
+                                        <small><%= timeAgo(headerData.last_use) %> 🕑</small>
                                     </div>
                                 </div>
                                 <div class="notification-item">
@@ -300,5 +300,169 @@
             setInterval(clock,1000)
              
         </script>
+
+
+        
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const searchBox = document.getElementById('adminSearch');
+
+    if (!searchBox) return;
+
+    // Admin pages and their routes
+    const pages = [
+        { name: 'Dashboard', keywords: ['dashboard', 'home'], url: '/admin/' },
+        { name: 'Hero Section', keywords: ['hero', 'banner', 'hero section'], url: '/admin/hero' },
+        { name: 'About', keywords: ['about', 'about section'], url: '/admin/about' },
+        { name: 'Skills', keywords: ['skills', 'skill'], url: '/admin/add_skill' },
+        { name: 'Manage Skills', keywords: ['manage skill', 'manage'], url: '/admin/edit_skill' },
+        { name: 'Resume', keywords: ['resume', 'cv'], url: '/admin/resume' },
+        { name: 'Services', keywords: ['services', 'service'], url: '/admin/services' },
+        { name: 'Certificate', keywords: ['certificate', 'certificates', 'cert'], url: '/admin/manage_manage' },
+        { name: 'Add Certificate', keywords: ['add certificate', 'Add certificates', 'serti'], url: '/admin/add_certificate' },
+        { name: 'Education and Expirence', keywords: ['education', 'iduc', 'educa'], url: '/admin/add_Experience' },
+        { name: 'Manage Expirence and Education', keywords: ['Manage edu', 'Education manag', 'Manage'], url: '/admin/manage_Experience' },
+        { name: 'Blog', keywords: ['blog', 'blogs', 'article'], url: '/admin/blog' },
+        { name: 'Add Demos', keywords: ['demos', 'demo'], url: '/admin/add_project_section' },
+        { name: 'Manage Demo', keywords: ['manage demo ', 'edit demo' ,'Manage'], url: '/admin/manage_project' }
+
+        
+        
+    ];
+
+    // Create suggestions container
+    const suggestionBox = document.createElement('div');
+
+    suggestionBox.id = 'adminSearchSuggestions';
+
+    Object.assign(suggestionBox.style, {
+        position: 'absolute',
+        top: 'calc(100% + 8px)',
+        left: '0',
+        right: '0',
+        background: '#fff',
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        boxShadow: '0 5px 15px rgba(0,0,0,0.12)',
+        zIndex: '9999',
+        display: 'none',
+        maxHeight: '300px',
+        overflowY: 'auto'
+    });
+
+    // Position suggestions relative to search box
+    const wrapper = document.createElement('div');
+
+    Object.assign(wrapper.style, {
+        position: 'relative',
+        display: 'inline-block',
+        width: searchBox.offsetWidth + 'px',
+        maxWidth: '100%'
+    });
+
+    searchBox.parentNode.insertBefore(wrapper, searchBox);
+    wrapper.appendChild(searchBox);
+    wrapper.appendChild(suggestionBox);
+
+    searchBox.style.width = '100%';
+
+    function findPages(value) {
+        return pages.filter(function (page) {
+            return page.name.toLowerCase().includes(value) ||
+                page.keywords.some(function (keyword) {
+                    return keyword.includes(value);
+                });
+        });
+    }
+
+    function openPage(page) {
+        window.location.href = page.url;
+    }
+
+    function showSuggestions() {
+        const value = searchBox.value.trim().toLowerCase();
+
+        suggestionBox.innerHTML = '';
+
+        if (!value) {
+            suggestionBox.style.display = 'none';
+            return;
+        }
+
+        const matches = findPages(value);
+
+        if (matches.length === 0) {
+            const empty = document.createElement('div');
+            empty.textContent = 'No pages found';
+            empty.style.padding = '12px';
+            empty.style.color = '#777';
+
+            suggestionBox.appendChild(empty);
+            suggestionBox.style.display = 'block';
+            return;
+        }
+
+        matches.forEach(function (page) {
+            const item = document.createElement('div');
+
+            item.textContent = page.name;
+
+            Object.assign(item.style, {
+                padding: '11px 14px',
+                cursor: 'pointer',
+                color: '#333',
+                borderBottom: '1px solid #eee',
+                fontSize: '14px'
+            });
+
+            item.addEventListener('mouseenter', function () {
+                item.style.background = '#f0efff';
+            });
+
+            item.addEventListener('mouseleave', function () {
+                item.style.background = '#fff';
+            });
+
+            item.addEventListener('click', function () {
+                openPage(page);
+            });
+
+            suggestionBox.appendChild(item);
+        });
+
+        suggestionBox.style.display = 'block';
+    }
+
+    searchBox.addEventListener('input', showSuggestions);
+
+    searchBox.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+
+            const value = searchBox.value.trim().toLowerCase();
+
+            if (!value) return;
+
+            const matches = findPages(value);
+
+            if (matches.length > 0) {
+                openPage(matches[0]);
+            }
+        }
+
+        if (event.key === 'Escape') {
+            suggestionBox.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!wrapper.contains(event.target)) {
+            suggestionBox.style.display = 'none';
+        }
+    });
+
+});
+</script>
 
             </header>
