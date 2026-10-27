@@ -6,7 +6,8 @@ const session = require('express-session');
 const fileupload = require('express-fileupload');
 const path = require('path');
 const fs = require('fs');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const { traceDeprecation } = require('process');
 
 routes.use(session({
     secret:'mykey',
@@ -772,7 +773,7 @@ routes.post('/save_hero/:img',async(req,res)=>{
         else{
            var newname = oldimg
         }
-        var update =`update about set position=?,expirience_dicription=?,name=?,email=?,location=?,freelance=?,Project_complete=?,happy_client=?,Awards_won=?,year_of_expirence=?,Image=? where sid=1`
+        var update =`update about set position=?,expirience_dicription=?,name=?,email=?,location=?,freelance=?,Project_complete=?,happy_client=?,Awards_won=?,year_of_expirence=? where sid=1`
         var upd = await query(update,[position,expirience_dicription,name,email,location,freelance,Project_complete,happy_client,awards_won,year_of_expirence,newname]);
 
         res.redirect('/admin/about')
@@ -811,6 +812,26 @@ routes.post('/save_hero/:img',async(req,res)=>{
         var sel = await query(select)
         res.render('admin/reject_req.ejs',{reject:sel})
     })
+
+    routes.get("/update_profile",session_check,async(req,res)=>{
+        var id = req.session.lid
+        var about = 'select * from about where sid = 1 '
+        var email_and_password = 'select * from login where lid = ?'
+
+        var email_pass = await query(email_and_password,[id])
+        var ab = await query(about)
+        // console.log(email_pass)
+        res.render('admin/update_profile.ejs',{photo:ab[0],email_pass:email_pass[0]})
+    })
+    
+    routes.post('/update_login_details',async(req,res)=>{
+        // res.send(req.params.id)
+        var {record_id,updated_email,updated_password} = req.body
+        var updated_email_and_password = 'update login set username=? , password=? where lid=? '
+        var update = await query(updated_email_and_password,[updated_email,updated_password,record_id])
+        res.redirect('/admin/update_profile')
+    })
+
 module.exports=routes
 
 

@@ -1,0 +1,106 @@
+<%-include('header.ejs')%>
+ <div class="admin-profile-container">
+
+    <div class="admin-profile-header">
+        <h2>Update Profile</h2>
+        <p>Manage your personal information</p>
+    </div>
+
+    <form action="/admin/update_login_details" method="POST" enctype="multipart/form-data">
+
+        <!-- Profile Image -->
+        <div class="admin-profile-image">
+
+            <img src="<%=photo.Image%>" alt="Profile Image">
+
+
+         
+
+        </div>
+        <input type="hidden" name="record_id" value="<%=email_pass.lid%>" />
+        <!-- Name -->
+        <div class="admin-profile-group">
+            <label for="admin_profile_name">Full Name</label>
+
+            <input
+                type="text"
+                id="admin_profile_name"
+                value="Pradip Shankar Dongare (Admin Owner Name Fix No Change Any One)"
+                placeholder="Enter your full name"
+                disabled
+            >
+        </div>
+
+        <!-- Email -->
+        <div class="admin-profile-group">
+            <label for="admin_profile_email">Email Address</label>
+
+            <input
+                type="email"
+                id="admin_profile_email"
+                value="<%=email_pass.username%>"
+                name="updated_email"
+                placeholder="Enter your email"
+                autofocus
+                required
+            >
+        </div>
+
+        <!-- Phone -->
+        <div class="admin-profile-group">
+            <label for="admin_profile_phone">Password</label>
+
+            <input
+                type="password"
+                id="admin_profile_password"
+                value="<%=email_pass.password%>"
+                name="updated_password"
+                placeholder="Enter your phone number"
+            >
+            <label style="display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; cursor: pointer;">
+                <input type="checkbox" id="show_password"
+                    style="width: 16px; height: 16px; margin: 0;">
+                Show Password
+            </label>
+            
+        </div>
+
+ 
+
+        <!-- Buttons -->
+        <div class="admin-profile-buttons">
+
+            <button type="submit" class="admin-profile-update-btn">
+                Update Email And Password
+            </button>
+
+            <button type="reset" class="admin-profile-reset-btn">
+                Reset
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+<!-- admin_profile_password -->
+ <!-- show_password -->
+
+<script type="text/javascript">
+
+document.getElementById('show_password').addEventListener('change',function(){
+    var password = document.getElementById('admin_profile_password')
+
+    if(this.checked){
+            password.type = 'text'
+    }
+    else{
+        password.type = 'password'
+    }
+
+})
+
+</script>
+
+<%-include('footer.ejs') %>

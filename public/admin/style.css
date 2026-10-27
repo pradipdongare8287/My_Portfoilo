@@ -790,3 +790,163 @@ a {
     background: var(--primary);
     border-color: var(--primary);
 }
+
+
+
+
+
+/* ====================UPDATE PROFILE================================ */
+/* Main Container */
+
+.admin-profile-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 35px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* Header */
+
+.admin-profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.admin-profile-header h2 {
+    color: #1e293b;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.admin-profile-header p {
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* Profile Image */
+
+.admin-profile-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.admin-profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e2e8f0;
+    margin-bottom: 12px;
+}
+
+.admin-profile-image label {
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.admin-profile-image input {
+    font-size: 13px;
+    max-width: 100%;
+}
+
+/* Form Groups */
+
+.admin-profile-group {
+    margin-bottom: 20px;
+}
+
+.admin-profile-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+}
+
+.admin-profile-group input,
+.admin-profile-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.admin-profile-group input:focus,
+.admin-profile-group textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.admin-profile-group textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+
+.admin-profile-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.admin-profile-buttons button {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.admin-profile-update-btn {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.admin-profile-update-btn:hover {
+    background: #1d4ed8;
+}
+
+.admin-profile-reset-btn {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.admin-profile-reset-btn:hover {
+    background: #cbd5e1;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    .admin-profile-container {
+        padding: 22px;
+        margin: 15px auto;
+    }
+
+    .admin-profile-header h2 {
+        font-size: 24px;
+    }
+
+    .admin-profile-buttons {
+        flex-direction: column;
+    }
+
+}
