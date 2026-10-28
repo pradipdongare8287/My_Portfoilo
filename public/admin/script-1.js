@@ -271,6 +271,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // 8. CHARTS (Dashboard)
     // ============================================
     // Visitors Chart
+    console.log("Monthly Visitors Data:", window.monthlyVisitorData);
+    // console.log("Chart Data:", window.monthlyVisitorData);
     const visitorsCtx = document.getElementById('visitorsChart');
     if (visitorsCtx) {
         new Chart(visitorsCtx, {
@@ -279,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                 datasets: [{
                     label: 'Visitors',
-                    data: [400, 600, 500, 800, 700, 200, 70, 190, 180, 100, 280, 250],
+                    data: window.monthlyVisitorData,
                     borderColor: '#6c63ff',
                     backgroundColor: 'rgba(108, 99, 255, 0.1)',
                     fill: true,

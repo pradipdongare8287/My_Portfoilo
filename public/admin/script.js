@@ -271,42 +271,92 @@ document.addEventListener('DOMContentLoaded', function() {
     // 8. CHARTS (Dashboard)
     // ============================================
     // Visitors Chart
+    // const visitorsCtx = document.getElementById('visitorsChart');
+    // if (visitorsCtx) {
+    //     new Chart(visitorsCtx, {
+    //         type: 'line',
+    //         data: {
+    //             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    //             datasets: [{
+    //                 label: 'Visitors',
+    //                 data: [1200, 1350, 1100, 1450, 1600, 1400, 1800, 2000, 1700, 1900, 2100, 2400],
+    //                 borderColor: '#6c63ff',
+    //                 backgroundColor: 'rgba(108, 99, 255, 0.1)',
+    //                 fill: true,
+    //                 tension: 0.4,
+    //                 pointBackgroundColor: '#6c63ff',
+    //                 pointRadius: 4,
+    //             }]
+    //         },
+    //         options: {
+    //             responsive: true,
+    //             maintainAspectRatio: false,
+    //             plugins: {
+    //                 legend: {
+    //                     display: false
+    //                 }
+    //             },
+    //             scales: {
+    //                 y: {
+    //                     beginAtZero: true,
+    //                     ticks: {
+    //                         stepSize: 500
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     });
+    // }
+
     const visitorsCtx = document.getElementById('visitorsChart');
-    if (visitorsCtx) {
-        new Chart(visitorsCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [{
-                    label: 'Visitors',
-                    data: [1200, 1350, 1100, 1450, 1600, 1400, 1800, 2000, 1700, 1900, 2100, 2400],
-                    borderColor: '#6c63ff',
-                    backgroundColor: 'rgba(108, 99, 255, 0.1)',
-                    fill: true,
-                    tension: 0.4,
-                    pointBackgroundColor: '#6c63ff',
-                    pointRadius: 4,
-                }]
+
+if (visitorsCtx) {
+    new Chart(visitorsCtx, {
+        type: 'line',
+
+        data: {
+            labels: [
+                'Jan', 'Feb', 'Mar', 'Apr',
+                'May', 'Jun', 'Jul', 'Aug',
+                'Sep', 'Oct', 'Nov', 'Dec'
+            ],
+
+            datasets: [{
+                label: 'Visitors',
+
+                // Database मधून येणारा Dynamic Data
+                data: window.monthlyVisitorData,
+
+                borderColor: '#6c63ff',
+                backgroundColor: 'rgba(108, 99, 255, 0.1)',
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: '#6c63ff',
+                pointRadius: 4,
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                }
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 500
-                        }
+
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 500
                     }
                 }
             }
-        });
-    }
+        }
+    });
+}
     
     // Categories Chart (Pie/Doughnut)
     const categoriesCtx = document.getElementById('categoriesChart');

@@ -119,6 +119,9 @@ routes.use(fileupload())
 routes.get('/', session_check, async (req, res) => {
     // res.send(req.session)
     var username = req.session.username
+
+  var website_visitor_data_anylysics =  'SELECT  MONTH(visit_time) AS month,COUNT(*) AS total_visitors FROM website_visits GROUP BY MONTH(visit_time) ORDER BY MONTH(visit_time)'
+   
     var New_message = 'SELECT COUNT(*) AS pending_count FROM contact_save WHERE status = "pending"'
     var Certificats = 'SELECT COUNT(*) AS certificat_count FROM certificates'
     var web_visitors = 'SELECT COUNT(*) AS web_visitors_count FROM website_visits'
@@ -131,8 +134,22 @@ routes.get('/', session_check, async (req, res) => {
         var New_messages = await query(New_message)
         var total_project = await query(projects_total_count)
 
+
+
+      // Visitor Analytics Query
+    var visitor_analytics_result = await query(website_visitor_data_anylysics);
+
+     // January ते December पर्यंत 0 visitors
+    let monthlyVisitorData = Array(12).fill(0);
+
+     // Database मधून Monthly Visitors Data
+    visitor_analytics_result.forEach((row) => {
+
+        monthlyVisitorData[row.month - 1] = row.total_visitors;
+
+    });
           
-        res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count });
+        res.render('admin/dashboard.ejs', { username: username,New_messages: New_messages[0].pending_count,Certificats: total_certificats[0].certificat_count,website_visite: website_visite[0].web_visitors_count,new_message: first_new_five_message, total_project: total_project[0].project_count, monthlyVisitorData: monthlyVisitorData });
 
 })
     
