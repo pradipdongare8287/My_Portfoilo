@@ -234,7 +234,7 @@ routes.post('/login_check', async (req, res) => {
         🔐
       </div>
 
-      <h1 style="margin:0;color:#ffffff;font-size:25px;line-height:1.4;font-weight:700;">
+      <h1 style="margin:0;color:#fffffaf;font-size:25px;line-height:1.4;font-weight:700;">
         Admin Login Alert
       </h1>
 
@@ -864,13 +864,218 @@ routes.post('/save_hero/:img',async(req,res)=>{
         var {record_id,updated_email,updated_password} = req.body
         var updated_email_and_password = 'update login set username=? , password=? where lid=? '
         var update = await query(updated_email_and_password,[updated_email,updated_password,record_id])
+
+
+           const response = await fetch(
+                'https://api.brevo.com/v3/smtp/email',
+                {
+                    method: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'api-key': process.env.BREVO_API_KEY,
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sender: {
+                            name: 'Pradip Shankar Dongare',
+                            email: 'mylaptopdell1212@gmail.com'
+                        },
+                        to: [
+                            {
+                                email: 'pradipshankaardongare@gmail.com'
+                            }
+                        ],
+                        subject: ' Security Alert – New Admin Login Detected 🚫',
+                        htmlContent: `
+                        <div style="margin:0;padding:30px 12px;background:#f1f5f9;font-family:Arial,Helvetica,sans-serif;color:#1e293b;">
+
+  <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:16px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 8px 30px rgba(15,23,42,0.08);">
+
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg,#111827,#312e81);padding:30px 24px;text-align:center;">
+
+      <div style="width:62px;height:62px;margin:0 auto 15px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:18px;line-height:62px;font-size:30px;">
+        🔐
+      </div>
+
+      <h1 style="margin:0;color:#ffffff;font-size:25px;line-height:1.4;font-weight:700;">
+        Account Security Alert
+      </h1>
+
+      <p style="margin:9px 0 0;color:#c7d2fe;font-size:14px;line-height:1.7;">
+        Pradip Dongare Portfolio Security System
+      </p>
+    </div>
+
+    <!-- Main Content -->
+    <div style="padding:28px 24px;">
+
+      <p style="margin:0 0 12px;font-size:16px;color:#334155;">
+        Hello Admin,
+      </p>
+
+      <h2 style="margin:0 0 12px;font-size:22px;line-height:1.4;color:#0f172a;">
+        Account Details Updated Successfully! 🔒
+      </h2>
+
+      <p style="margin:0 0 24px;font-size:14px;line-height:1.8;color:#64748b;">
+        Your portfolio admin account security details have been updated successfully. Below are the details of this activity.
+      </p>
+
+      <!-- Status Card -->
+      <div style="padding:17px;background:#ecfdf5;border:1px solid #bbf7d0;border-radius:12px;margin-bottom:24px;">
+
+        <table role="presentation" style="width:100%;border-collapse:collapse;">
+          <tr>
+            <td style="width:48px;vertical-align:middle;">
+              <div style="width:40px;height:40px;background:#d1fae5;border-radius:50%;text-align:center;line-height:40px;font-size:21px;">
+                ✓
+              </div>
+            </td>
+
+            <td style="vertical-align:middle;padding-left:10px;">
+              <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#065f46;">
+                Update Successful
+              </p>
+
+              <p style="margin:0;font-size:12px;color:#047857;">
+                Your account details have been changed successfully.
+              </p>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+
+      <!-- Activity Details -->
+      <h3 style="margin:0 0 14px;font-size:16px;color:#0f172a;">
+        📋 Account Update Details
+      </h3>
+
+      <div style="border:1px solid #e2e8f0;border-radius:12px;overflow:hidden;margin-bottom:24px;">
+
+        <table role="presentation" style="width:100%;border-collapse:collapse;font-size:14px;">
+
+          <tr style="background:#f8fafc;">
+            <td style="padding:15px 13px;color:#64748b;width:38%;border-bottom:1px solid #e2e8f0;">
+              Website
+            </td>
+
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
+              Pradip Dongare Portfolio ❤️
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:15px 13px;color:#64748b;border-bottom:1px solid #e2e8f0;">
+              Event
+            </td>
+
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
+              Email & Password Update 🔐
+            </td>
+          </tr>
+
+          <tr style="background:#f8fafc;">
+            <td style="padding:15px 13px;color:#64748b;border-bottom:1px solid #e2e8f0;">
+              Date
+            </td>
+
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
+              ${new Date().toLocaleDateString('en-IN')} 📅
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:15px 13px;color:#64748b;border-bottom:1px solid #e2e8f0;">
+              Time
+            </td>
+
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
+              ${new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true})} 🕑
+            </td>
+          </tr>
+
+          <tr style="background:#f8fafc;">
+            <td style="padding:15px 13px;color:#64748b;border-bottom:1px solid #e2e8f0;">
+              Update Status
+            </td>
+
+            <td style="padding:15px 13px;color:#059669;font-weight:700;border-bottom:1px solid #e2e8f0;">
+              ✓ Successful
+            </td>
+          </tr>
+
+          <tr>
+            <td style="padding:15px 13px;color:#64748b;border-bottom:1px solid #e2e8f0;">
+              Updated Email
+            </td>
+
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;border-bottom:1px solid #e2e8f0;">
+              ${updated_email} 💌
+            </td>
+          </tr>
+
+          <tr style="background:#f8fafc;">
+            <td style="padding:15px 13px;color:#64748b;">
+              Password
+            </td>
+
+            <td style="padding:15px 13px;color:#0f172a;font-weight:600;">
+               ${updated_password}  🔑
+            </td>
+          </tr>
+
+        </table>
+      </div>
+
+      <!-- Security Notice -->
+      <div style="padding:18px;background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;margin-bottom:24px;">
+
+        <p style="margin:0 0 8px;font-size:15px;font-weight:700;color:#9a3412;">
+          🛡️ Security Notice
+        </p>
+
+        <p style="margin:0;font-size:13px;line-height:1.8;color:#9a3412;">
+          If you made these changes, no further action is required. If you did not update your email address or password, please secure your admin account immediately and review your account security.
+        </p>
+
+      </div>
+
+      <p style="margin:0;font-size:13px;line-height:1.8;color:#64748b;">
+        This is an automated security notification generated by your portfolio website. Please do not reply to this email.
+      </p>
+
+      <p style="margin:22px 0 0;font-size:14px;line-height:1.8;color:#334155;">
+        Regards 🙏,<br>
+        <strong style="color:#111827;">Pradip Dongare</strong> ❤️<br>
+        <span style="font-size:12px;color:#64748b;">Portfolio Security System</span>
+      </p>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#f8fafc;border-top:1px solid #e2e8f0;padding:20px 24px;text-align:center;">
+
+      <p style="margin:0 0 6px;font-size:12px;color:#64748b;">
+        © ${new Date().getFullYear()} Pradip Dongare Portfolio
+      </p>
+
+      <p style="margin:0;font-size:11px;line-height:1.7;color:#94a3b8;">
+        Automated Security Alert · Protecting your digital workspace
+      </p>
+
+    </div>
+
+  </div>
+</div>
+                        `
+                    })
+                }
+            );
         res.redirect('/admin/update_profile')
     })
 
 module.exports=routes
-
-
-
-
 
 
