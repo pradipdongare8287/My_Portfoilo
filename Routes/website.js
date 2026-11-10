@@ -12,7 +12,9 @@ const { route } = require('./admin');
     database:'bnbnpjlwouew0p07mjrd',
     waitForConnections: true,
     connectionLimit: 5,
-    queueLimit: 0
+    queueLimit: 0 ,
+    port:3306
+
  })
 
  routes.use(express.static('public'))

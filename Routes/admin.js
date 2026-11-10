@@ -27,8 +27,9 @@ var database = mysql.createPool({
     timezone: '+05:30',
     waitForConnections: true,
     connectionLimit: 6,
-    queueLimit: 0
-})
+    queueLimit: 0,
+    port:3306
+  })
 
 function session_check(req,res,next){
     if(req.session.username){
