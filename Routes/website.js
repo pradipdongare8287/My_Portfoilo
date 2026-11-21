@@ -37,6 +37,29 @@ const { route } = require('./admin');
  var query = util.promisify(database.query).bind(database);
 
  routes.use(express.urlencoded({extended:true}))
+
+
+
+//  Header Data ==============================
+
+routes.use(async (req, res,next) => {
+
+                                            var img = 'select * from hero where sr_No = 1'
+                                            var image_get = await query(img)
+
+                                            try{
+                                                res.locals.headerData = {
+                                                browser_tab_img:image_get[0].Photo
+                                            };
+                                            next()
+                                            // console.log(res.locals.headerData)
+                                            }
+                                            catch(erro){
+                                                console.log(erro)
+                                                next(erro)
+                                            }
+                                           
+                                        });
 //  ========================================================================================================
 
 routes.get('/',async(req,res)=>{

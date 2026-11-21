@@ -78,9 +78,9 @@
                     border: 1px solid #e2e8f0;
                     text-align: center;
                 ">
-                    <a href="/<%= certificate[i].certificate_img %>" target="_blank">
+                    <a href="https://res.cloudinary.com/ejsclcjy/image/upload/Portfolio/<%=certificate[i].certificate_img%>" target="_blank">
                         <img 
-                        src="/<%=certificate[i].certificate_img%>"
+                        src="https://res.cloudinary.com/ejsclcjy/image/upload/Portfolio/<%=certificate[i].certificate_img%>"
                         alt="Certificate"
                         style="
                             width: 100px;
@@ -122,7 +122,7 @@
                 ">
 
                     
-                    <a href="/admin/delete_certificate/<%=certificate[i].cid%>"
+                    <a href="/admin/delete_certificate/<%=certificate[i].cid%>/<%=certificate[i].certificate_img%>"
                        onclick="return confirm('Are you sure you want to delete <%=certificate[i].certificate_name%> certificate?')"
                        style="
                            display: inline-block;

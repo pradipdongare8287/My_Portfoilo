@@ -15,7 +15,11 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Custom CSS -->
+     
     <link rel="stylesheet" href="/admin/style.css" />
+
+    <!-- Browser Tab Icon -->
+     <link rel="icon" type="image/png" href="https://res.cloudinary.com/ejsclcjy/image/upload/v1795240921/Portfolio/<%=headerData.browser_tab_img%>">
 </head>
 <body>
     <div class="app-wrapper">
@@ -101,7 +105,7 @@
                     
                     <li class="nav-item">
                         <a href="#portfolio" data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fa fa-certificate"></i>
+                            <i class="fa fa-video-camera"></i>
                             
                             <span>Demo's</span>
                             <i class="fas fa-chevron-down ms-auto"></i>
@@ -154,7 +158,7 @@
                     
                     <li class="nav-divider">Management</li>
                     
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="#messages" data-bs-toggle="collapse" aria-expanded="false">
                             <i class="fas fa-envelope"></i>
                             <span>Messages</span>
@@ -164,18 +168,24 @@
                             <li><a href="#">Inbox</a></li>
                             <li><a href="#">Unread</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                     
                     <li class="nav-item">
                         <a href="#users" data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fas fa-users"></i>
-                            <span>Enquiry</span>
+                            <i class="fas fa-envelope"></i>
+                            <span>Messages</span>
+                            <% if(headerData.new_message>0) {%>
+                                <span class="badge bg-danger ms-auto"> <%= headerData.new_message %> New Messages</span>
+                            <% } else{  %>
+
+                                <% } %>
+                            
                             <i class="fas fa-chevron-down ms-auto"></i>
                         </a>
                         <ul class="collapse" id="users">
-                            <li><a href="/admin/pending_enq">Pending Enquiry</a></li>
-                            <li><a href="/admin/confirm_enq">Confirm Enquiry</a></li>
-                            <li><a href="/admin/reject_req">Reject Enquiry</a></li>
+                            <li><a href="/admin/pending_enq">Pending Messages</a></li>
+                            <li><a href="/admin/confirm_enq">Confirm Messages</a></li>
+                            <li><a href="/admin/reject_req">Reject Messages</a></li>
                         </ul>
                     </li>
                     
@@ -263,7 +273,8 @@
                     <!-- User Profile -->
                     <div class="dropdown">
                         <button class="btn btn-light p-0" data-bs-toggle="dropdown">
-                            <img src="/<%=headerData.photo%>" 
+                            <img src="https://res.cloudinary.com/ejsclcjy/image/upload/v1795240921/Portfolio/<%=headerData.photo%>" 
+                            
                                  alt="Profile" class="rounded-circle" width="40" height="40" />
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">

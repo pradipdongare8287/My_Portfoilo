@@ -6,8 +6,14 @@ const session = require('express-session');
 const fileupload = require('express-fileupload');
 const path = require('path');
 const fs = require('fs');
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 const { traceDeprecation } = require('process');
+// const cloudnary = require('cloudinary')
+
+const cloudinary = require('../src/cloudnary.js');
+const { error } = require('console');
+
 
 routes.use(session({
     secret:'mykey',
@@ -87,22 +93,27 @@ routes.use(async (req, res, next) => {
                                          var sql = `SELECT L.*, h.*FROM login AS L INNER JOIN hero AS h ON L.lid = h.sr_No WHERE h.sr_No = ?`;
                                          var total_login = 'SELECT COUNT(*) AS login_count FROM login_history'
                                          var last_login = `SELECT *FROM login_history ORDER BY login_date DESC LIMIT 1 OFFSET 1;`
-
+                                         var new_message_total_count = 'SELECT COUNT(*) AS new_message_count FROM contact_save where status="Pending"'
                                          var logins = await query(total_login)
                                          var last_log = await query(last_login)
-                                        //  console.log(last_log[0])
+                                         var new_message_count = await query(new_message_total_count)
 
-
+                                        
                                          var data = await query(sql, [id]);
 
-                                        if (data.length > 0) {
+                                      
                                             res.locals.headerData = {
                                                 name: data[0].name,
                                                 photo: data[0].Photo,
                                                 all_login_count : logins[0].login_count ,
-                                                last_use : last_log[0].login_date
+                                                last_use : last_log[0].login_date,
+                                                new_message: new_message_count[0].new_message_count,
+                                                
                                             };
-                                        }
+
+                                            // console.log(res.locals.headerData)
+                                            
+                                        
                                             res.locals.timeAgo = timeAgo;
                                             next();
                                         });
@@ -111,7 +122,10 @@ routes.use(async (req, res, next) => {
 var query = util.promisify(database.query).bind(database);
 
 routes.use(express.urlencoded({extended:true}))
-routes.use(fileupload())
+
+routes.use(fileupload({
+    useTempFiles: true
+}));
 
 // ========================================================================================================
 
@@ -554,20 +568,60 @@ routes.get('/add_project_section',session_check,(req,res)=>{
     res.render('admin/add_project.ejs',{username:username})
 })
 
-routes.post('/add_project',session_check,async(req,res)=>{
-   var {project_name,project_category}=req.body;
+routes.post('/add_project', session_check, async (req, res) => {
 
-   var img = req.files.project_video;
-    var newname = Date.now()+img.name;
-    var imgpath = path.join(__dirname,'../','public',newname)
-    img.mv(imgpath,(err)=>{})
+    var { project_name, project_category } = req.body;
+    var video = req.files.project_video;
 
-   var insert = `insert into portfolio (Project_name,Project_category,Background_img)
-                values(?,?,?)`
+    var newname = Date.now() + '_' + video.name.replace(/\.[^/.]+$/, '');
 
-   var ins = await query(insert,[project_name,project_category,newname]);
-   res.redirect('/admin/add_project_section');
-})
+    try {
+
+        console.log("UPLOAD START");
+
+        console.log("TEMP PATH:", video.tempFilePath);
+        console.log("FILE EXISTS:", fs.existsSync(video.tempFilePath));
+        console.log("FILE SIZE:", fs.statSync(video.tempFilePath).size);
+        console.log("MIME TYPE:", video.mimetype);
+
+        if (!fs.existsSync(video.tempFilePath)) {
+            return res.send("Video temp file not found");
+        }
+
+        // Cloudinary Video Upload
+        var result = await cloudinary.uploader.upload(
+            video.tempFilePath,
+            {
+                folder: 'Portfolio',
+                public_id: newname,
+                resource_type: 'video'
+            }
+        );
+
+        console.log("VIDEO UPLOADED:", result.public_id);
+
+        // Database Insert
+        var insert = `INSERT INTO portfolio
+        (Project_name, Project_category, Background_img)
+        VALUES (?, ?, ?)`;
+
+        await query(insert, [
+            project_name,
+            project_category,
+            newname
+        ]);
+
+        console.log("DATABASE SAVED");
+
+        res.redirect('/admin/add_project_section');
+
+    } catch (error) {
+
+        console.log("UPLOAD ERROR:", error);
+        res.send("Video upload failed");
+    }
+
+});
 
 routes.get('/manage_project',session_check,async(req,res)=>{
     var username = req.session.username
@@ -584,10 +638,17 @@ routes.post('/uploade_certificate',async(req,res)=>{
     var {certificate_name,institute_name}=req.body
 
     var certificat_img = req.files.certificate_image
-    var new_name = Date.now()+certificat_img.name;
-    var save_img_location = path.join(__dirname,'../','public',new_name)
-    certificat_img.mv(save_img_location,(err)=>{})
-
+    var new_name = Date.now()+req.files.certificate_image.name.replace(/\.[^/.]+$/, '');
+    
+  // Cloudinary upload
+        var result = await cloudinary.uploader.upload(
+          certificat_img.tempFilePath,
+          {
+            folder:'Portfolio',
+            public_id: new_name,
+            resource_type:'image'
+          }
+        )
     var save_certificate = `insert into certificates (certificate_name,certificate_decleare_institude,certificate_img)values(?,?,?)`
 
     var certificate = await query(save_certificate,[certificate_name,institute_name,new_name])
@@ -603,25 +664,69 @@ routes.get('/manage_manage',async(req,res)=>{
     
 })
 
-routes.get('/delete_certificate/:id',async(req,res)=>{
+routes.get('/delete_certificate/:id/:img',async(req,res)=>{
+    var certificate_photo = req.params.certificate
     var id = req.params.id;
+
+    var delete_cerficate_img = await cloudinary.uploader.destroy(
+      'Portfolio'+certificate_photo,
+      {
+        resource_type: 'image'
+      }
+    )
+
     var delete_certificate = `delete from certificates where cid=?`
     var delete1 = await query(delete_certificate,[id]);
     res.redirect('/admin/manage_manage')
 })
 
-routes.get('/del_project/:id/:img',session_check,async(req,res)=>{
-    var id = req.params.id;
-    var delimg = req.params.img
-    var del = path.join(__dirname,'../','public',delimg)
-    fs.unlink(del,(err)=>{})
+// routes.get('/del_project/:id/:img',session_check,async(req,res)=>{
+//     var id = req.params.id;
+//     var delimg = req.params.img
+//     var del = path.join(__dirname,'../','public',delimg)
+//     fs.unlink(del,(err)=>{})
     
-    var delete1 = `delete from portfolio where id=?`
-    var del = await query(delete1,[id]);
-    res.redirect('/admin/manage_project')
-})
+//     var delete1 = `delete from portfolio where id=?`
+//     var del = await query(delete1,[id]);
+//     res.redirect('/admin/manage_project')
+// })
 // ================================================================================================================
 // ================================================================================================================
+
+
+
+routes.get('/del_project/:id/:img', session_check, async (req, res) => {
+
+    var id = req.params.id;
+    var delimg = req.params.img;
+
+    try {
+
+        // Delete video from Cloudinary
+        var cloudinary_delete = await cloudinary.uploader.destroy(
+            'Portfolio/' + delimg,
+            {
+                resource_type: 'video'
+            }
+        );
+
+        // Delete project from database
+        var delete1 = `DELETE FROM portfolio WHERE id=?`;
+
+        await query(delete1, [id]);
+
+        console.log("PROJECT DELETED");
+
+        res.redirect('/admin/manage_project');
+
+    } catch (error) {
+
+        console.log("DELETE ERROR:", error);
+
+        res.send("Project delete failed");
+    }
+
+});
 
 routes.get('/add_post',session_check,(req,res)=>{
     var username = req.session.username
@@ -629,11 +734,19 @@ routes.get('/add_post',session_check,(req,res)=>{
 })
 
 routes.post('/add_post',session_check,async(req,res)=>{
-   var {post_date,post_name,post_discription,post_url}=req.body;
+   try{
+    var {post_date,post_name,post_discription,post_url}=req.body;
    var img = req.files.image;
-   var newname = Date.now()+img.name;
-   var imglocation = path.join(__dirname,'../','public',newname)
-    img.mv(imglocation,(err)=>{})
+   var newname = Date.now()+req.files.image.name.replace(/\.[^/.]+$/, '')
+   
+   var result = cloudinary.uploader.upload(
+    img.tempFilePath,
+    {
+      folder:'Portfolio',
+      public_id :newname,
+      resource_type:'image'
+    }
+   )
 
    var insert = `insert into blog (post_date,post_name,post_discription,Image,blog_link)
                 values(?,?,?,?,?)`
@@ -641,7 +754,10 @@ routes.post('/add_post',session_check,async(req,res)=>{
    var inser = await query(insert,[post_date,post_name,post_discription,newname,post_url]);
 
    res.redirect('/admin/add_post')
-   
+   }
+   catch(error){
+    console.log(error)
+   }
 })
  
 
@@ -653,15 +769,26 @@ routes.get('/manage_blog',session_check,async(req,res)=>{
 })
 
 routes.get('/del_post/:id/:img',session_check,async(req,res)=>{
-    var id = req.params.id;
+    try{
+      var id = req.params.id;
     var delimg = req.params.img;
 
-    var del = path.join(__dirname,'../','public',delimg)
-    fs.unlink(del,(err)=>{})
+    var del = await cloudinary.uploader.destroy(
+      'Portfolio'+ delimg,
+      {
+        resource_type:'image'
+      }
+
+    )
     
     var delete1 = `delete from blog where Post_id=?`
     var del = await query(delete1,[id])
     res.redirect('/admin/manage_blog')
+    }
+    catch(error){
+      console.log(error)
+      res.send('Error',error)
+    }
 })
 
 
@@ -718,14 +845,25 @@ routes.post('/save_contact/:img',session_check,async(req,res)=>{
    var {email,phone,address,map,old_logo}=req.body;
    var old_logo = req.params.img;
 
-    if(req.files && req.files.logo){
+    try{
+      if(req.files && req.files.logo){
         var logo = req.files.logo;
-        var logoname = Date.now()+logo.name;
-        var logopath = path.join(__dirname,'../','public',logoname);
-        logo.mv(logopath,(err)=>{})
+        var logoname = Date.now()+req.files.logo.name.replace(/\.[^/.]+$/, '');
+        var save_img = await cloudinary.uploader.upload(
+          logo.tempFilePath,
+          {
+            folder:'Portfolio',
+            public_id:logoname,
+            resource_type:'image'
+          }
+        )
 
-       var del = path.join(__dirname,'../','public',old_logo)
-       fs.unlink(del,(err)=>{})
+       var del = await cloudinary.uploader.destroy(
+      'Portfolio'+ old_logo,
+      {
+        resource_type:'image'
+      }
+    )
 
     }
     else{
@@ -737,7 +875,11 @@ routes.post('/save_contact/:img',session_check,async(req,res)=>{
     var upd = await  query(update,[email,phone,address,logoname,map])
 
     res.redirect('/admin/setting')
-
+    }
+    catch(erro){
+      console.log(erro)
+      res.send('error',erro)
+    }
 })
 
 routes.post('/social_save',session_check,async(req,res)=>{
@@ -760,31 +902,95 @@ routes.get('/hero',session_check,async(req,res)=>{
     
 })
 
-routes.post('/save_hero/:img',async(req,res)=>{
-    var {name,Position,experience_disc}=req.body;
-    var oldimg = req.params.img;
+// routes.post('/save_hero/:img',async(req,res)=>{
+//     var {name,Position,experience_disc}=req.body;
+//     var oldimg = req.params.img;
     
-    if(req.files && req.files.Photo){
-        var newimg = req.files.Photo;
-        var newname = Date.now()+newimg.name;
-        var newpath = path.join(__dirname,'../','public',newname);
-        newimg.mv(newpath,(err)=>{})
+//     if(req.files && req.files.Photo){
+//         var newimg = req.files.Photo;
+//         var newname = Date.now()+newimg.name;
+//         var newpath = path.join(__dirname,'../','public',newname);
+//         newimg.mv(newpath,(err)=>{})
 
-        var delold = path.join(__dirname,'../','public',oldimg)
-        fs.unlink(delold,(err)=>{})
-    }
-    else{
+//         var delold = path.join(__dirname,'../','public',oldimg)
+//         fs.unlink(delold,(err)=>{})
+//     }
+//     else{
 
-        var newname = oldimg
-    }
-    var update = `update hero set name=?,Position=?,experience_disc=?,Photo=? where sr_No=1 `
-    var up = await query(update,[name,Position,experience_disc,newname])
-   res.redirect('/admin/hero')
-    // res.send()
-})
+//         var newname = oldimg
+//     }
+//     var update = `update hero set name=?,Position=?,experience_disc=?,Photo=? where sr_No=1 `
+//     var up = await query(update,[name,Position,experience_disc,newname])
+//    res.redirect('/admin/hero')
+//     // res.send()
+// })
 
 // =====================================================================================================
 // =====================================================================================================
+
+
+routes.post('/save_hero/:img', async (req, res) => {
+
+    var { name, Position, experience_disc } = req.body;
+    var oldimg = req.params.img;
+
+    try {
+
+        var newname = oldimg;
+
+        // New image upload
+        if (req.files && req.files.Photo) {
+
+            var newimg = req.files.Photo;
+
+            newname = Date.now() + '_' + newimg.name.replace(/\.[^/.]+$/, '');
+
+            // Cloudinary upload
+            var result = await cloudinary.uploader.upload(
+                newimg.tempFilePath,
+                {
+                    folder: 'Portfolio',
+                    public_id: newname,
+                    resource_type: 'image'
+                }
+            );
+
+            console.log("IMAGE UPLOADED:", result.public_id);
+
+            // Delete old image from Cloudinary
+            if (oldimg) {
+                await cloudinary.uploader.destroy(
+                    'Portfolio/' + oldimg,
+                    {
+                        resource_type: 'image'
+                    }
+                );
+            }
+        }
+
+        // Update database
+        var update = `UPDATE hero 
+        SET name=?, Position=?, experience_disc=?, Photo=? 
+        WHERE sr_No=1`;
+
+        await query(update, [
+            name,
+            Position,
+            experience_disc,
+            newname
+        ]);
+
+        console.log("HERO UPDATED");
+
+        res.redirect('/admin/hero');
+
+    } catch (error) {
+
+        console.log("HERO UPDATE ERROR:", error);
+        res.send("Hero update failed");
+    }
+
+});
 
     routes.get('/about',session_check,async(req,res)=>{
         var select = `select * from about`
@@ -799,17 +1005,28 @@ routes.post('/save_hero/:img',async(req,res)=>{
         
         if(req.files && req.files.photo){
             var newimg = req.files.photo;
-            var newname = Date.now()+newimg.name;
-            var imglocation = path.join(__dirname,'../','public',newname);
-            newimg.mv(imglocation,(err)=>{})
+            var newname = Date.now()+req.files.photo.name.replace(/\.[^/.]+$/, '');
+            const result = await cloudinary.uploader.upload(
+                        req.files.photo.tempFilePath,
+                        {
+                            folder: 'Portfolio',
+                            public_id: newname,
+                            resource_type: 'image'
 
-            var delold = path.join(__dirname,'../','public',oldimg);
-            fs.unlink(delold,(err)=>{})
+                        }
+                    );
+
+            var cloudinary_delete = await cloudinary.uploader.destroy(
+            'Portfolio/' + oldimg,
+            {
+                resource_type: 'image'
+            }
+        );
         }
         else{
            var newname = oldimg
         }
-        var update =`update about set position=?,expirience_dicription=?,name=?,email=?,location=?,freelance=?,Project_complete=?,happy_client=?,Awards_won=?,year_of_expirence=? where sid=1`
+        var update =`update about set position=?,expirience_dicription=?,name=?,email=?,location=?,freelance=?,Project_complete=?,happy_client=?,Awards_won=?,year_of_expirence=?,Image=? where sid=1`
         var upd = await query(update,[position,expirience_dicription,name,email,location,freelance,Project_complete,happy_client,awards_won,year_of_expirence,newname]);
 
         res.redirect('/admin/about')

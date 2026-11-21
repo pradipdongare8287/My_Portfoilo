@@ -36,14 +36,17 @@
         <div class="certificate-card">
 
             <div class="certificate-img">
-                <video src="<%=portfolio[i].Background_img%>" controls></video>
+                <video src="https://res.cloudinary.com/ejsclcjy/video/upload/Portfolio/<%= portfolio[i].Background_img %>" controls></video>
+                <!-- https://res.cloudinary.com/ejsclcjy/video/upload/Portfolio/<%= portfolio[i].Background_img %> -->
+                
+                
             </div>
             <div class="certificate-info">
                 <h3><%=portfolio[i].Project_name%></h3>
                 <p><%=portfolio[i].Project_category%></p>
                 
                 <a 
-                    href="<%=portfolio[i].Background_img%>" 
+                    href="https://res.cloudinary.com/ejsclcjy/video/upload/Portfolio/<%= portfolio[i].Background_img %>" 
                     target="_blank"
                     class="view-certificate"
                 >
@@ -79,7 +82,7 @@
 
             <div class="certificate-img">
                 <img 
-                    src="/<%=all_certificate[i].certificate_img%>" 
+                    src="https://res.cloudinary.com/ejsclcjy/image/upload/Portfolio/<%=all_certificate[i].certificate_img%>" 
                     alt="<%=all_certificate[i].certificate_name%>"
                 >
             </div>
@@ -88,7 +91,7 @@
                 <p><%=all_certificate[i].certificate_decleare_institude%></p>
 
                 <a 
-                    href="/<%=all_certificate[i].certificate_img%>" 
+                    href="https://res.cloudinary.com/ejsclcjy/image/upload/Portfolio/<%=all_certificate[i].certificate_img%>" 
                     target="_blank"
                     class="view-certificate"
                 >
