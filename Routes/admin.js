@@ -597,8 +597,8 @@ routes.post('/add_project', session_check, async (req, res) => {
                 resource_type: 'video'
             }
         );
-
-        console.log("VIDEO UPLOADED:", result.public_id);
+        await fs.promises.unlink(video.tempFilePath);
+        // console.log("VIDEO UPLOADED:", result.public_id);
 
         // Database Insert
         var insert = `INSERT INTO portfolio
@@ -649,6 +649,8 @@ routes.post('/uploade_certificate',async(req,res)=>{
             resource_type:'image'
           }
         )
+        await fs.promises.unlink(certificat_img.tempFilePath);
+
     var save_certificate = `insert into certificates (certificate_name,certificate_decleare_institude,certificate_img)values(?,?,?)`
 
     var certificate = await query(save_certificate,[certificate_name,institute_name,new_name])
@@ -747,7 +749,7 @@ routes.post('/add_post',session_check,async(req,res)=>{
       resource_type:'image'
     }
    )
-
+   await fs.promises.unlink(img.tempFilePath);
    var insert = `insert into blog (post_date,post_name,post_discription,Image,blog_link)
                 values(?,?,?,?,?)`
 
@@ -955,7 +957,8 @@ routes.post('/save_hero/:img', async (req, res) => {
                 }
             );
 
-            console.log("IMAGE UPLOADED:", result.public_id);
+            await fs.promises.unlink(newimg.tempFilePath);
+            // console.log("IMAGE UPLOADED:", result.public_id);
 
             // Delete old image from Cloudinary
             if (oldimg) {
@@ -1015,7 +1018,7 @@ routes.post('/save_hero/:img', async (req, res) => {
 
                         }
                     );
-
+                await fs.promises.unlink(req.files.photo.tempFilePath);
             var cloudinary_delete = await cloudinary.uploader.destroy(
             'Portfolio/' + oldimg,
             {
